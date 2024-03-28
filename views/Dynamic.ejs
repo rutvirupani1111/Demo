@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+       header h3,h2 {
+                font-size: 30px;
+                font-weight: 600;
+                color: #fdfdfe;
+                text-align: center;
+                text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+                    0px 0px 20px #b393d3;
+            }
+       #query
+       {
+        width: 80%;
+        font-size: large;
+        background-color: bisque;
+        border: 4px solid whitesmoke;
+        border-radius: 20px;
+        font-family: 'Roboto', sans-serif;
+        padding: 10px;
+        box-shadow: 10px 5px 5px rgb(202, 185, 185);
+       }
+       #submit
+       {
+        width: 16%;
+        padding: 10px;
+        font-size: large;
+        border: 4px solid white;
+        background-color: rgb(27, 170, 27);
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px 0 rgba(243, 228, 228, 0.5);
+       }
+
+body{
+    background-color: rgb(43, 28, 28);
+    color: white;
+}
+ /* for Pagination */
+.pagination 
+{
+  position: absolute;
+  left: 50%;
+  top: 97%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.5);
+}
+.pagination td {
+  display: inline-block;
+  list-style: none;
+}
+.pagination td a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #fff;
+  text-align: center;
+  text-decoration: none;
+  color: #252525;
+  border-radius: 4px;
+  margin: 5px;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+.pagination td a:hover, .pagination td a.active {
+  color: #fff;
+  background-color: #ff4242;
+}
+.pagination td:first-child a {
+  border-radius: 40px 0 0 40px;
+}
+.pagination td:last-child a {
+  border-radius: 0 40px 40px 0;
+}
+
+/* Dynamo Table */
+
+.dynamo
+{
+    padding: 10px;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.cell
+{
+    padding-left: 20px;
+}
+.cell td{
+    padding: 5px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    /* opacity: 80%; */
+}
+
+#arrow
+{
+    color: black;
+    font-size: 35px;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h2>
+                RUTVI RUPANI<br/>
+             Task-3 : Dynamic Query Executer
+        </h2>  
+   </header> 
+    <form method="get">
+    <%if(query==undefined){%>
+            <input type="text" name="query" id="query" placeholder="Type your Query here......">&nbsp;&nbsp;
+    <% }else{%>
+        <input type="text" name="query" id="query" style="font-family: 'Roboto'; font-weight: 500;" placeholder="Type your Query here......" value="<%=query%>">&nbsp;&nbsp;
+    <%}%>
+       <b><input type="submit" name="submit" id="submit" value="SUBMIT" style="font-size: 20px; font-family: 'Roboto';"></b>
+        <input type="hidden" value="<%= PID %>" name="pageID"/>
+    </form>
+    
+<%if(error==undefined){%>
+    <%if(res!=undefined){%>
+        <%if(col&&order!=undefined){%>
+
+        <div class="table-wrapper" style="padding: 20px;">
+        <table border="1" align="center" class="dynamo">
+            <thead>
+            <tr>
+                <% fields.forEach(field => { %>
+                    <th><%= field.name %>
+                        <a href = "/dynamic_query/?pageID=1&query=<%= query%>&colName=<%=field.name%>&orderby=asc" id="arrow">&#8593;</a>
+                        <a href = "/dynamic_query/?pageID=1&query=<%= query%>&colName=<%=field.name%>&orderby=desc" id="arrow">&#8595;</a>
+                    </th>
+                <% }) %>
+            </tr>
+            </thead>            
+            <tbody class="cell">            
+                <% res.forEach(result => { %>
+                    <tr>
+                        <% for( let i = 0; i < fields.length; i++ ) { %>
+                            <td><%= result[fields[i].name] %></td>
+                        <% } %>
+                    <% }) %>    
+                    </tr>
+                   
+            </tbody>
+        </table>
+
+        <table align="center" style="font-size: 30px; background: white; color: black; font-weight: bolder;" >
+            <tr class="pagination">
+                <td>
+                    <%if(PID==1){%>
+                        &lt;&lt;
+                        <%}else{%>
+                    <a href="/dynamic_query/?pageID=1&query=<%=query%>&colName=<%=col%>&orderby=<%=order%>">
+                       &lt;&lt; 
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==1){%>
+                        &lt;
+                    <%}else{%>
+                    <a href="/dynamic_query/?pageID=<%=parseInt(PID)-1%>&query=<%=query%>&colName=<%=col%>&orderby=<%=order%>">
+                        &lt;
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%= PID %></td>
+                </td>
+
+                <td>
+                    <%if(PID==(qulen/20).toFixed(0)){%>
+                        >
+                    <%}else{%>
+                        
+                    <a href="/dynamic_query/?pageID=<%=parseInt(PID)+1%>&query=<%=query%>&colName=<%=col%>&orderby=<%=order%>">
+                        >
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==(qulen/20).toFixed(0)){%>
+                        >>
+                    <%}else{%>
+
+                    <a href="/dynamic_query/?pageID=<%=(qulen/20).toFixed(0)%>&query=<%=query%>&colName=<%=col%>&orderby=<%=order%>">
+                         >>
+                    </a>
+                    <%}%>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <%}%>
+    <%}%>
+<%}else{%>
+    <script>alert("Please Enter Query Properly...")</script>
+    <center>
+        <br/><br/>
+        <h5 style="padding-top: 50px; padding-bottom: 50px; opacity: 60%; font-size: 22px; text-align: center; background-color: red; width: 70%; border-radius: 20px; "><%=error%></h5>
+    </center>
+<%}%>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search</title>
+    <style>            
+        #simple,#more,#fl-table
+        {
+            /* background-color: aquamarine; */
+            border: none;
+            font-size: 23px;
+        }
+        #fl-table
+        {
+            background-color: bisque;
+        }
+        body
+        {
+            background-color:   rgb(83, 60, 60);
+        }
+        #go
+       {
+        margin: 20px;
+        padding: 10px;
+        font-size: large;
+        border: 4px solid white;
+        background-color: rgb(93, 173, 93);
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px 0 rgba(19, 18, 18, 0.5);
+       }
+
+
+.show
+{
+    font-size: 25px;
+    color: blue;
+    border-radius: 5px;
+    /* width: 20px;
+    height: 30px; */
+    font-weight: 200;
+    text-align: center;
+    margin: 47%;
+    background-color: white;
+}
+       /* Pagination */
+.pagination 
+{
+  position: absolute;
+  left: 50%;
+  top: 97%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.5);
+}
+.pagination td {
+  display: inline-block;
+  list-style: none;
+}
+.pagination td a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #fff;
+  text-align: center;
+  text-decoration: none;
+  color: #252525;
+  border-radius: 4px;
+  margin: 5px;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+.pagination td a:hover, .pagination td a.active {
+  color: #fff;
+  background-color: #ff4242;
+}
+.pagination td:first-child a {
+  border-radius: 40px 0 0 40px;
+}
+.pagination td:last-child a {
+  border-radius: 0 40px 40px 0;
+}
+
+.dynamo,.more, .fl-table, .simple
+{
+    padding: 10px;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.cell
+{
+    padding-left: 20px;
+}
+.cell td{
+    padding: 5px;
+    font-size: 30px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    /* opacity: 80%; */
+}
+    </style>
+</head>
+<body>
+    <script>
+        function search_deet()
+        {
+            var t1 = document.getElementById("simple");
+            var t2 = document.getElementById("more");
+            var t3 = document.getElementById("fl-table");
+            var obj=document.getElementById("show")
+            // var t4 = document.getElementById("fl-table2");
+
+            t1.setAttribute("hidden","true");
+            // t3.setAttribute("hidden","true");
+            t2.removeAttribute("hidden","true");
+            // t4.removeAttribute("hidden","true");
+            obj.setAttribute("hidden","true");
+        }
+    </script>
+        <form method="get">
+            <table class="simple" align="center" id="simple">
+                <tbody class="cell">
+
+            <tr>
+                <td class="simple"><label for="srch_ID"> Enter the SID : </label></td>
+                <td class="simple"><input type="text" tabindex="1" name="srch_SID" id="srch_SID" placeholder="Ex:14"></td>
+                <td class="simple"><input type="submit" name="go" id="go" value="Go"></td>
+                <td class="simple"><input type="hidden" value="<%= PID %>" name="pageID"/></td>  
+            </tr>
+        </tbody>
+            </table>
+        </form>    
+
+        <span class="show" id="show" onclick="search_deet()">Show More</span>
+
+<%if(error==undefined){%>
+ <%if(res!=undefined){%>
+    <!-- <script>
+        var tb = document.getElementById("more");
+        search_deet(tb);
+        tb.removeAttribute("hidden","true");
+    </script> -->
+
+    <div class="table-wrapper" style="padding: 20px;">
+        <table class="more" align="center" id="more" style="background-color: beige;" hidden>
+
+            <form method="get">
+                <tbody class="cell">
+                    
+                <tr>
+                <td>
+                    <input type="text" name="srch_name" placeholder="srch_name" id="srch_name">
+                </td>
+                <td>
+                    <input type="text" name="srch_surname" placeholder="srch_surname" id="srch_surname">
+                </td>
+                <td>
+                    <input type="text" name="srch_branch" placeholder="srch_branch" id="srch_branch">
+                </td>
+                <td>
+                    <input type="text" name="srch_DOB" placeholder="srch_DOB" id="srch_DOB">
+                </td>
+                <td>
+                    <input type="text" name="ANDOR" placeholder="AND / OR" id="ANDOR">
+                </td>
+                <td>
+                    <input type="submit" name="go" value="Go" id="go">
+                </td>
+            </tr>
+            </tbody>
+            </form>        
+            <!-- <div class="table-wrapper" style="padding: 20px;"> -->
+                
+        </table>
+        <%if((srch_name || srch_surname || srch_branch || srch_DOB || ANDOR ) != undefined){%>
+        <script>
+            search_deet();
+        </script>
+        <%}%>
+        <table border="1" align="center" class="fl-table" id="fl-table">
+            <thead>
+            <tr>
+                <% fields.forEach(field => { %>
+                    <th><%= field.name %></th>
+                <% }) %>
+            </tr>
+            </thead>
+            <tbody class="cell">
+
+            <% for(let i=0;i<res.length;i++) {%>
+                <tr class="cell">
+                    <td><%= res[i].SID %></td>
+                    <td><%= res[i].Name %></td>
+                    <td><%= res[i].Surname %></td>
+                    <td><%= res[i].Branch %></td>
+                    <td><%= res[i].Address %></td>
+                    <td><%= res[i].Email_ID %></td>
+                    <td><%= res[i].Phone %></td>
+                    <td><%= res[i].DOB %></td>
+                    <td><%= res[i].Gender %></td>
+                    <td><%= res[i].Created_At %></td>
+                </tr>
+            </tbody>
+            <% } %>
+        </table>
+
+        <% if((srch_name || srch_surname || srch_branch || srch_DOB) == undefined){%>
+            <table align="center" style="font-size: 30px; background: white; color: black; font-weight: bolder;" >
+                <tr class="pagination">
+                    <td>
+                        <%if(PID==1){%>
+                            &lt;&lt;
+                            <%}else{%>
+                        <a href="/search_detail/?pageID=1">
+                           &lt;&lt; 
+                        </a>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%if(PID==1){%>
+                            &lt;
+                        <%}else{%>
+                        <a href="/search_detail/?pageID=<%=parseInt(PID)-1%>">
+                            &lt;
+                        </a>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%= PID %></td>
+                    </td>
+    
+                    <td>
+                        <%if(PID==1){%>
+                            >
+                        <%}else{%>
+                            
+                        <a href="/search_detail/?pageID=<%=parseInt(PID)+1%>">
+                            >
+                        </a>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%if(PID==1){%>
+                            >>
+                        <%}else{%>
+    
+                        <a href="/search_detail/?pageID=1">
+                             >>
+                        </a>
+                        <%}%>
+                    </td>
+                </tr>
+       <% }else{%>        
+        <table align="center" style="font-size: 30px; background: white; color: black; font-weight: bolder;" >
+            <tr class="pagination">
+                <td>
+                    <%if(PID==1){%>
+                        &lt;&lt;
+                        <%}else{%>
+                    <a href="/search_detail/?pageID=1&srch_ID=<%=srch_SID%>&srch_name=<%=srch_name%>&srch_surname=<%=srch_surname%>&srch_branch=<%=srch_branch%>&srch_DOB=<%=srch_DOB%>&ANDOR=<%=ANDOR%>">
+                       &lt;&lt; 
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==1){%>
+                        &lt;
+                    <%}else{%>
+                    <a href="/search_detail/?pageID=<%=parseInt(PID)-1%>&srch_ID=<%=srch_SID%>&srch_name=<%=srch_name%>&srch_surname=<%=srch_surname%>&srch_branch=<%=srch_branch%>&srch_DOB=<%=srch_DOB%>&ANDOR=<%=ANDOR%>">
+                        &lt;
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%= PID %></td>
+                </td>
+
+                <%let lastPage=(qulen/10).toFixed(0)%>
+                <%if(lastPage==0){%>
+                    <%lastPage=1%>
+                <%}%>
+                <td>
+                    <%if(PID==lastPage){%>
+                        >
+                    <%}else{%>
+                        
+                    <a href="/search_detail/?pageID=<%=parseInt(PID)+1%>&srch_ID=<%=srch_SID%>&srch_name=<%=srch_name%>&srch_surname=<%=srch_surname%>&srch_branch=<%=srch_branch%>&srch_DOB=<%=srch_DOB%>&ANDOR=<%=ANDOR%>">
+                        >
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==lastPage){%>
+                        >>
+                    <%}else{%>
+
+                    <a href="/search_detail/?pageID=<%=(qulen/10).toFixed(0)%>&srch_ID=<%=srch_SID%>&srch_name=<%=srch_name%>&srch_surname=<%=srch_surname%>&srch_branch=<%=srch_branch%>&srch_DOB=<%=srch_DOB%>&ANDOR=<%=ANDOR%>">
+                         >>
+                    </a>
+                    <%}%>
+                </td>
+            </tr>
+        </table>
+    <%}%>
+    </div>
+    <%}%>
+    <%}%>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Report</title>
+    <style>
+        * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+body {
+    padding-top: 30px;
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba(71, 147, 227, 1);
+}
+h2 {
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
+
+/* Table Styles */
+
+.table-wrapper {
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 50%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 1px solid #f8f8f8;
+    font-size: 25px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #4fc3a1;
+}
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+    .view
+    {
+        color: grey;
+    }
+    .view a{
+        color: white;
+        text-decoration: none;
+        background-color: #3a70a7;
+        border-radius: 10px;
+        padding: 7px;
+        opacity: 50%;
+    }
+/* Responsive */
+
+@media (max-width: 400px) {
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before {
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 22px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fl-table thead,
+    .fl-table tbody,
+    .fl-table thead th {
+        display: block;
+    }
+    .fl-table thead th:last-child {
+        border-bottom: none;
+    }
+    .fl-table thead {
+        float: left;
+    }
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fl-table td,
+    .fl-table th {
+        padding: 20px 0.625em 0.625em 0.625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 60px;
+        font-size: 26px;
+        text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+        background: #f8f8f8;
+        border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+}
+form
+{
+    font-size: 24px;
+}
+
+
+/* for Pagination */
+
+.pagination {
+  position: absolute;
+  left: 50%;
+  top: 95%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 40px;
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.5);
+}
+.pagination td {
+  display: inline-block;
+  list-style: none;
+}
+.pagination td a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #fff;
+  text-align: center;
+  text-decoration: none;
+  color: #252525;
+  border-radius: 4px;
+  margin: 5px;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+.pagination td a:hover, .pagination td a.active {
+  color: #fff;
+  background-color: #ff4242;
+}
+.pagination td:first-child a {
+  border-radius: 40px 0 0 40px;
+}
+.pagination td:last-child a {
+  border-radius: 0 40px 40px 0;
+}
+
+
+#arrow
+{
+    color: black;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+</style>
+</head>
+<body style="text-align: center;">
+
+    <div class="table-wrapper" style="padding: 20px;">
+        <table border="1" align="center" class="fl-table">
+            <thead>
+            <tr>
+                <th rowspan="2">
+                    SID
+                    <!-- <input type="button" name="SIDasc" onclick="asc()" value="&#8593;" style="font-size: 25px;">
+                    <input type="button" onclick="dsc()" name="SIDdsc" value="&#8595;" style="font-size: 25px;"> -->
+                    <!-- <span style="font-size: 25px;" onclick="asc()">&#8593;</span> -->
+                    <a href="/result_report/?pageID=1&colName=SID&orderby=asc" id="arrow">&#8593;</a>
+                    <a href="/result_report/?pageID=1&colName=SID&orderby=desc" id="arrow">&#8595;</a>
+                </th>
+                <th rowspan="2">
+                    Name
+                    <a href="/result_report/?pageID=1&colName=Name&orderby=asc" id="arrow">&#8593;</a>
+                    <a href="/result_report/?pageID=1&colName=Name&orderby=desc" id="arrow">&#8595;</a>
+                </th>
+                <th colspan="2">
+                    Terminal
+                </th>
+                <th colspan="2">
+                    Prelims
+                </th>
+                <th colspan="2">
+                    Final
+                </th>
+                <th rowspan="2">
+                    Total
+                </th>
+                <th rowspan="2">
+                    View
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Practical
+                </th>
+                <th>
+                    Theory
+                </th>
+                <th>
+                    Practical
+                </th>
+                <th>
+                    Theory
+                </th>
+                <th>
+                    Practical
+                </th>
+                <th>
+                    Theory
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(let i=0;i<(res.length/3);i++) {%>            
+                <tr>
+                    <%var sum=0%>
+                    <%var stu = res[i*3].Sid%>
+                    <td><%= res[i*3].Sid%></td>
+                    <td><%=res[i*3].FName%></td>
+                    <%for(let j=((i+1)*3)-1;j>=i*3;j--) {%>
+                        <td><%=res[j].Practical_Marks%></td>
+                        <%sum+=parseInt(res[j].Practical_Marks)%>
+                        <td><%=res[j].Theory_Marks%></td>
+                        <%sum+=parseInt(res[j].Theory_Marks)%>
+                    <%}%> 
+                    <td><%=sum%></td>               
+                <td class="view">
+                    <a href="/result_report/AttDetails/?SID=<%=stu%>">View Result</a>
+                </td> 
+            <% } %>
+               
+            </tr>
+            </tbody>
+        </table>
+        
+<!-- 
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">December 2023</a>
+              <a href="#">January 2024</a>
+              <a href="#">February 2024</a>
+            </div>
+          </div> -->
+        <table align="center" style="font-size: 24px;" >
+            <tr class="pagination">
+                <td>
+                    <%if(PID==1){%>
+                        &lt;&lt;
+                    <%}else{%>
+                    <a href="/result_report/?pageID=1&colName=<%=col%>&orderby=<%=order%>">
+                       &lt;&lt; 
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==1){%>
+                        &lt;
+                    <%}else{%>
+                    <a href="/result_report/?pageID=<%=parseInt(PID)-1%>&colName=<%=col%>&orderby=<%=order%>">
+                        &lt;
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%= PID %></td>
+                </td>
+
+                <td>
+                    <%if(PID==10){%>
+                        >
+                    <%}else{%>
+                        
+                    <a href="/result_report/?pageID=<%=parseInt(PID)+1%>&colName=<%=col%>&orderby=<%=order%>">
+                        >
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==10){%>
+                        >>
+                    <%}else{%>
+                    <a href="/result_report/?pageID=10&colName=<%=col%>&orderby=<%=order%>">
+                         >>
+                    </a>
+                    <%}%>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

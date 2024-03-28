@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <style>
+        fieldset
+        {
+            width: fit-content;
+        }
+        h4
+        {
+            text-align: left;
+        }
+        table tr td
+        {
+            padding: 10px;
+        }
+        table
+        {
+            box-shadow: inset 0 -3em 3em rgba(91, 89, 209, 0.3),
+                        0 0 0 2px rgb(255, 255, 255),
+                        0.3em 0.3em 1em rgba(233, 175, 127, 0.6); 
+                        /* /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+            /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);  */
+            /* background-image: linear-gradient(rgb(82, 80, 196), yellow, rgb(228, 163, 133)); */
+        }
+        .Btn
+        {
+            font-size: large;
+            margin: 2%;
+            padding: 10px;
+
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #eee;
+        }
+
+        .err_msg{
+            background-color: red;
+            color: white;
+            font-weight: 300;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+
+
+        .nextprev
+        {
+            display: flex;
+            margin: 0px auto;
+            align-content: center;
+        }
+        #next, #prev
+        {
+            font-size: large;
+            margin: 2%;
+            padding: 10px;
+            background-color: aliceblue ;
+            border-radius: 5px;
+            width: 50px;
+            cursor: pointer;
+            box-shadow: 5px 5px 5px #eee;
+        }
+
+        a
+        {
+            text-decoration: none;    
+        }
+
+        .btn_next li
+        {
+            background-color: bisque;
+            width: 130px;
+            align-items: center;
+            border-radius: 4px;
+            border: 2px solid black;
+            display: inline;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1><center>Job Application Form</center></h1><br><br>
+    
+    <div class="btns" style="margin-left: 680px; align-items: center;"> 
+        <ul class="btn_next">
+            <li> 
+                <a href="#" onclick="job_ajax()">Basic Details</a>
+            </li>
+            <li> 
+                <a href="" onclick="job_ajax_edu()">Education Details</a>
+            </li>
+            <li> 
+                <a href="#" onclick="job_ajax_work()">Work Experience</a>
+            </li>
+            <li> 
+                <a href="#" onclick="job_ajax_lang()">Languages Known</a>
+            </li>
+            <li> 
+                <a href="#" onclick="job_ajax_tech()">Technologies Known</a>
+            </li>
+            <li> 
+                <a href="#" onclick="job_ajax_ref()">References</a>
+            </li>
+            <li> 
+                <a href="#" onclick="job_ajax_pref()">Preferences</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="nextprev">
+       <p id="next" onclick="onnext()">NEXT</p>
+       <p id="prev" onclick="onprev()">PREV</p>
+    </div>
+    <br>
+    <form name="form" autocomplete="on" onreset="rst()" id="form" method="post">
+        <center>
+        <fieldset class="job_app" id="Basic_Details">
+            <legend><b>Basic Details</b></legend>
+            <table>
+                    <tr>
+                    <td>
+                        <label for="FirstName">First Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="FirstName" placeholder="Enter your Name" autofocus tabindex="1" id="FirstName">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <br/>
+                        <span class="err_msg" id="spFirstName"></span>
+                    </td>
+                    <td>
+                        <label for="LastName">Last Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="LastName" placeholder="Enter your Surname" id="LastName" tabindex="2">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <br/>
+                        <span class="err_msg" id="spLastName"></span>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Designation">Designation:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Designation"  placeholder="Enter your Designation" id="Designation">
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spDesignation"></span>
+                        </td>
+                        <td>
+                            <label for="Email_ID">Email-ID:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="Email_ID"  placeholder="Ex : abc@gmail.com" tabindex="3" id="Email_ID">
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spEmail_ID"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="Add1">Address-1:</label>
+                        </td>
+                        <td>
+                            <textarea name="Add1" id="Add1" cols="24" rows="2" placeholder="Enter your Building/Society Details" wrap="hard"></textarea>
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spAdd1"></span>
+                        </td>
+                        <td>
+                            <label for="Add2">Address-2:</label>
+                        </td>
+                        <td>
+                            <textarea name="Add2" id="Add2" cols="24" rows="2" placeholder="Enter your Landmark Details" wrap="soft"></textarea>
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spAdd2"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="City">City:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="City" name="City" dir="rtl" placeholder="Enter your City">
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spCity"></span>
+                        </td>
+                        <td>
+                            <label for="Phone_No">Phone No.:</label>
+                        </td>
+                        <td>
+                            <input type="text" id="Phone_No" name="Phone_No" autocomplete="off" placeholder="Ex : 7698800789">
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spPhone_No"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="State">State:</label>
+                        </td>
+                        <td>
+                            <select name="State" id="State">
+                                <option value="">Select your State</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Maharashtra">Maharashtra</option>                    
+                                
+                                
+                               
+                            </select>
+
+                            <br/>
+                            <span class="err_msg" id="spState"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="Gender">Gender:</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="Gender" id="Female" value="F">
+                            <label for="Female">Female</label>
+                            <input type="radio" name="Gender" id="Male" value="M    ">
+                            <label for="Male">Male</label>
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+
+                            <br/>
+                            <span class="err_msg" id="spGender"></span>
+                        </td>  
+                        <!-- res.send({id:result.insertId}) -->
+                            <label for="Zip_Code">Zip-Code:</label>
+                            </td>
+                            <td>
+                                <input type="number" id="Zip_Code" name="Zip_Code" maxlength="6"  placeholder="Ex : 394210">
+                                <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                                <br/>
+                                <span class="err_msg" id="spZip_Code"></span>
+                            </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="Rel_Status">Relationship Status:</label>
+                        </td>
+                        <td>
+                            <select name="Rel_Status" id="Rel_Status">
+                                <option value="">Select your Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                            </select>
+                            <br/>
+                            <span class="err_msg" id="spRel_Status"></span>
+                        </td>
+                        <td>
+                            <label for="DOB">DOB:</label>
+                        </td>
+                        <td>
+                            <!-- <input type="date" name="DOB" max="2003-12-31"> -->
+                            <!-- Restricts the person to apply below age 20 -->
+                            <input type="text" name="dt" id="dt" placeholder="01"> / <input type="text" id="mnth" name="mnth" placeholder="01"> / <input type="text" id="yr" name="yr" placeholder="2000">
+                            <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <br/>
+                            <span class="err_msg" id="spdt"></span>
+                        </td>
+                    </tr>
+            </table>
+        </fieldset>
+        </center>
+
+    <br/><br/>
+    <center>
+        <fieldset style="width: max-content;" class="job_app" id="Education_Details" hidden>
+            <legend><b>Education Details</b></legend>
+                <!-- <tr>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table> -->
+            <h4 style="text-align: left;">SSC Result</h4>
+            <table style="width: 100%;">
+            <tr>
+                <td>
+                    <label for="Course[]">Name of the Board:</label>
+                </td>
+                <td>
+                    <select name="Course[]" id="Board0">
+                        <option value="">Select your Board</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="GSEB">GSEB</option>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </select>
+                    <br/>
+                    <span class="err_msg" id="spBoard"></span>
+                </td>
+                <td>
+                    <label for="Passing_Yr">Passing Year:</label>
+                </td>
+                <td>
+                    <input type="number" name="Passing_Yr[]" maxlength="4" id="Passing_Yr0">
+                    <br/>
+                    <span class="err_msg" id="spPassing_Yr"></span>
+                </td>
+                <td>
+                    <label for="Percentage">Percentage:</label>
+                </td>
+                <td>
+                    <input type="number" name="Percentage[]" id="Percentage0">
+                    <br/>
+                    <span class="err_msg" id="spPercentage"></span>
+                </td>
+            </tr>
+            </table>
+            <hr/>
+            <table style="width: 100%;">
+            <h4>HSC/Diploma Result</h4>
+            <tr>
+                <td>
+                    <label for="Course">Name of the Board:</label>
+                </td>
+                <td>
+                    <select name="Course[]" id="Board1">
+                        <option value="">Select your Board</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="GSEB">GSEB</option>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </select>
+                    <br/>
+                    <span class="err_msg" id="spBoard"></span>
+                </td>
+                <td>
+                    <label for="Passing_Yr">Passing Year:</label>
+                </td>
+                <td>
+                    <input type="number" name="Passing_Yr[]" maxlength="4" id="Passing_Yr1">
+                    <br/>
+                    <span class="err_msg" id="spPassing_Yr"></span>
+                </td>
+                <td>
+                    <label for="Percentage">Percentage:</label>
+                </td>
+                <td>
+                    <input type="number" name="Percentage[]" id="Percentage1">
+                    <br/>
+                    <span class="err_msg" id="spPercentage"></span>
+                </td>
+            </tr>
+            </table>
+            
+            <hr/>
+            <table style="width: 100%;">
+            <h4>Bachelors Degree</h4>
+            <tr>
+                <td>
+                    <label for="Course[]">Course Name:</label>
+                </td>
+                <td>
+                    <select name="Course[]" id="Board2">
+                        <option value="">Select your Course</option>
+                        <option value="BE">BE</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BCom">BCom</option>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </select>
+                    <br/>
+                    <span class="err_msg" id="spCourse"></span>
+                </td>
+                <!-- <td>
+                    <label for="University">University:</label>
+                </td>
+                <td>
+                    <input type="text" name="University">
+                </td> -->
+                <td>
+                    <label for="Passing_Yr">Passing Year:</label>
+                </td>
+                <td>
+                    <input type="number" name="Passing_Yr[]" maxlength="4" id="Passing_Yr2">
+                </td>
+                <td>
+                    <label for="Percentage">Percentage:</label>
+                </td>
+                <td>
+                    <input type="number" name="Percentage[]" id="Percentage2">
+                </td>
+            </tr>
+            </table>
+            <hr/>
+<table style="width: 100%;">
+            <h4>Masters Degree</h4>
+            <tr>
+                <td>
+                    <label for="Course">Course Name:</label>
+                </td>
+                <td>
+                    <select name="Course[]" id="Board3">
+                        <option value="">Select your Course</option>
+                        <option value="ME">ME</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MCom">MCom</option>
+                        <i class="fa-solid fa-circle-check"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </select>
+                    <br/>
+                    <span class="err_msg" id="spCourse"></span>
+                </td>
+                <!-- <td>
+                    <label for="University">University:</label>
+                </td>
+                <td>
+                    <input type="text" name="University">
+                </td> -->
+                <td>
+                    <label for="Passing_Yr">Passing Year:</label>
+                </td>
+                <td>
+                    <input type="number" name="Passing_Yr[]" maxlength="4" id="Passing_Yr3">
+                </td>
+                <td>
+                    <label for="Percentage">Percentage:</label>
+                </td>
+                <td>
+                    <input type="number" name="Percentage[]" id="Percentage3">
+                </td>
+            </tr>
+</table>
+        </fieldset>
+        <br/><br/>
+
+        <fieldset style="width: max-content;" id="Work_Exp" class="job_app" hidden>
+            <legend><b>Work Experience</b></legend>
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <label for="Company">Company Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Company" id="Company0">
+                    </td>
+                    <td>
+                        <label for="Dsg">Designation:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Dsg" draggable="true" id="Dsg0">
+                    </td>
+                    <td>
+                        <label for="Exp_From">From:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_From"> -->
+                        <input type="number" name="expfrdt" max="31" min="1" id="expfrdt0"> / <input type="number" name="expfrmnth" min="1" max="12" id="expfrmnth0"> / <input type="number" name="expfryr" min="1995" max="2003" id="expfryr0">
+                    </td>
+                    <td>
+                        <label for="Exp_To">To:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_To"> -->
+                        <input type="number" name="exptodt" max="31" min="1" id="exptodt0"> / <input type="number" name="exptomnth" min="1" max="12" id="exptomnth0"> / <input type="number" name="exptoyr" min="1995" max="2003" id="exptoyr0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="Company">Company Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Company" id="Company1">
+                    </td>
+                    <td>
+                        <label for="Dsg">Designation:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Dsg" draggable="true" id="Dsg1">
+                    </td>
+                    <td>
+                        <label for="Exp_From">From:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_From"> -->
+                        <input type="number" name="expfrdt" max="31" min="1" id="expfrdt1"> / <input type="number" name="expfrmnth" min="1" max="12" id="expfrmnth1"> / <input type="number" name="expfryr" id="expfryr1">
+                    </td>
+                    <td>
+                        <label for="Exp_To">To:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_To"> -->
+                        <input type="number" name="exptodt" max="31" min="1" id="exptodt1"> / <input type="number" name="exptomnth" min="1" max="12" id="exptomnth1"> / <input type="number" name="exptoyr" id="exptoyr1">
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>
+                        <label for="Company">Company Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Company" id="Company2">
+                    </td>
+                    <td>
+                        <label for="Dsg">Designation:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="Dsg" draggable="true" id="Dsg2">
+                    </td>
+                    <td>
+                        <label for="Exp_From">From:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_From"> -->
+                        <input type="number" name="expfrdt" max="31" min="1" id="expfrdt2"> / <input type="number" name="expfrmnth" min="1" max="12" id="expfrmnth2"> / <input type="number" name="expfryr" id="expfryr2">
+                    </td>
+                    <td>
+                        <label for="Exp_To">To:</label>
+                    </td>
+                    <td>
+                        <!-- <input type="date" name="Exp_To"> -->
+                        <input type="number" name="exptodt" max="31" min="1" id="exptodt2"> / <input type="number" name="exptomnth" min="1" max="12" id="exptomnth2"> / <input type="number" name="exptoyr" id="exptoyr2">
+                    </td>
+                </tr>
+            </table>
+    
+        </fieldset>
+        <br/><br/>
+
+        <fieldset class="job_app" id="Lang_Known" hidden>
+            <legend><b>Languages Known</b></legend>
+            <table>
+            <tr>
+                <td><input type="checkbox" name="Language[]" id="Hindi" value="Hindi" class="Lang"></td>
+                <td><label for="Hindi"> Hindi </label></td>
+                <td><input type="checkbox" name="Read[]" id="HRead" value="1" disabled class="rwsh"></td>
+                <td><label for="Read"> Read </label></td>
+                <td><input type="checkbox" name="Write[]" id="HWrite" value="1" disabled class="rwsh"></td>
+                <td><label for="Write"> Write </label></td>
+                <td><input type="checkbox" name="Speak[]" id="HSpeak" value="1" disabled class="rwsh"></td>
+                <td><label for="Speak"> Speak </label></td> 
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Language[]" id="English" value="English" class="Lang"></td>
+                <td><label for="English"> English </label></td>
+                <td><input type="checkbox" name="Read[]" id="ERead" value="1" disabled class="rwse"></td>
+                <td><label for="Read"> Read </label></td>
+                <td><input type="checkbox" name="Write[]" id="EWrite" value="1" disabled class="rwse"></td>
+                <td><label for="Write"> Write </label></td>
+                <td><input type="checkbox" name="Speak[]" id="ESpeak" value="1" disabled class="rwse"></td>
+                <td><label for="Speak"> Speak </label></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" name="Language[]" id="Gujarati" value="Gujarati" class="Lang">
+                </td>
+                <td>
+                    <label for="Gujarati"> Gujarati </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="Read[]" id="GRead" value="1" disabled class="rwsg">
+                </td>
+                <td>
+                    <label for="Read"> Read </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="Write[]" id="GWrite" value="1" disabled class="rwsg">
+                </td>
+                <td>
+                    <label for="Write"> Write </label>
+                </td>
+                <td>
+                    <input type="checkbox" name="Speak[]" id="GSpeak" value="1" disabled class="rwsg">
+                </td>
+                <td>
+                    <label for="Speak"> Speak </label>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="Language[]" id="Spanish" value="Spanish" class="Lang"></td>
+                <td><label for="Spanish"> Spanish </label></td>
+                <td><input type="checkbox" name="Read[]" id="SRead" value="1" disabled class="rwss"></td>
+                <td><label for="Read"> Read </label></td>
+                <td><input type="checkbox" name="Write[]" id="SWrite" value="1" disabled class="rwss"></td>
+                <td><label for="Write"> Write </label></td>
+                <td><input type="checkbox" name="Speak[]" id="SSpeak" value="1" disabled class="rwss"></td>
+                <td><label for="Speak"> Speak </label></td> 
+            </tr>
+
+            </table> 
+        </fieldset>
+        <br/><br/>
+        <fieldset class="job_app" id="Tech_Known" hidden>
+            <legend><b>Technologies Known</b></legend>
+            <table>
+                <tr style="width: 4px;">
+                    <td>
+                        <input type="checkbox" name="Tech[]" value="PHP" id="PHP" class="Tech">
+                    </td>
+                    <td>
+                        <label for="PHP"> PHP </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level0" id="Beginner" disabled value="Beginner" class="bmeP">
+                    </td>
+                    <td>
+                        <label for="Beginner"> Beginner </label></td>
+                    <td>
+                        <input type="radio" name="level0" id="Mediator" disabled value="Mediator" class="bmeP">
+                    </td>
+                    
+                    <td>
+                        <label for="Mediator"> Mediator </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level0" id="Expert" disabled value="Expert" class="bmeP">
+                    </td>
+                    <td>
+                        <label for="Expert"> Expert </label>
+                    </td>
+                </tr>
+    
+                <tr>
+                    <td><input type="checkbox" name="Tech[]" id="MySQL" class="Tech" value="MySQL"></td>
+                    <td><label for="MySQL"> MySQL </label></td>
+                    <td><input type="radio" name="level1" id="Beginner2" disabled value="Beginner" class="bmeM"></td>
+                    <td><label for="Beginner"> Beginner</label></td>
+                    <td><input type="radio" name="level1" id="Mediator2" disabled value="Mediator" class="bmeM"></td>
+                    <td><label for="Mediator"> Mediator </label></td>
+                    <td><input type="radio" name="level1" id="Expert2" disabled value="Expert" class="bmeM"></td>  
+                    <td><label for="Expert"> Expert</label></td>
+                </tr>
+
+                <tr>
+                    <td><input type="checkbox" name="Tech[]" id="Laravel" class="Tech" value="Laravel"></td>
+                    <td>
+                        <label for="Laravel"> Laravel </label>
+                    </td>
+
+                    <td>
+                        <input type="radio" name="level2" id="Beginner3" disabled value="Beginner" class="bmeL">
+                    </td>
+                    <td>
+                        <label for="Beginner"> Beginner </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level2" id="Mediator3" disabled value="Mediator" class="bmeL">
+                    </td>
+                    <td>
+                        <label for="Mediator"> Mediator </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level2" id="Expert3" disabled value="Expert" class="bmeL">
+                    </td>
+                    <td>
+                        <label for="Expert"> Expert </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="Tech[]" id="Oracle" class="Tech" value="Oracle">
+                    </td>
+                    <td>
+                        <label for="Oracle"> Oracle </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level3" id="Beginner4" disabled value="Beginner" class="bmeO">
+                    </td>
+                    <td>
+                        <label for="Beginner"> Beginner </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level3" id="Mediator4" disabled value="Mediator" class="bmeO">
+                    </td>
+                    <td>
+                        <label for="Mediator"> Mediator </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="level3" id="Expert4" disabled value="Expert" class="bmeO">
+                    </td>
+                    <td>
+                        <label for="Expert"> Expert </label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <br/><br/>
+        <fieldset class="job_app" id="Ref_Contact" hidden>
+            <legend><b>Referrence Contact</b></legend>
+
+            <table>
+                <tr>
+                    <td>
+                        <label for="Name">Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="RefName" id="RefName0">
+                    </td>
+                    <td>
+                        <label for="Contact_No">Contact No.:</label>
+                    </td>   
+                    <td>
+                        <input type="number" name="RefContact_No" id="RefContact_No0">
+                        <br/>
+                    <span class="err_msg" id="spRefC"></span>
+                    </td>   
+                    <td>
+                        <label for="Relation">Relation:</label>
+                    </td> 
+                    <td>
+                        <input type="text" name="RefRelation" id="RefRelation0">
+                        <!-- <br/>
+                            <span class="err_msg" id="spPercentage"></span> -->
+                    </td> 
+                </tr>
+            
+                <tr>
+                    <td>
+                        <label for="Name">Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="RefName" id="RefName1">
+                    </td>
+                    <td>
+                        <label for="Contact_No">Contact No.:</label>
+                    </td>   
+                    <td>
+                        <input type="number" name="RefContact_No" id="Ref_Contact1">
+                    </td>   
+                    <td>
+                        <label for="Relation">Relation:</label>
+                    </td> 
+                    <td>
+                        <input type="text" name="RefRelation" id="RefRelation1">
+                    </td> 
+                </tr>
+            </table>
+        </fieldset>
+        <br/><br/>
+
+        <fieldset class="job_app" id="Pref" hidden>
+            <legend><b>Preferrences</b></legend>
+            <table>
+                        <tr>
+                            <td rowspan="3">
+                                <label for="Pref_Loc">Preferred Location:</label>
+                            <!-- </td>
+                                <td> -->
+                                <select name="Pref_Loc" id="Pref_Loc" multiple>
+                                    <option value="Ahmedabad">Ahmedabad</option>
+                                    <option value="Surat">Surat</option>
+                                    <option value="Mumbai">Mumbai</option>
+                                </select>
+
+                    <td>
+                        <label for="Notice">Notice Period:</label>
+                    <!-- </td> 
+                        <td> -->
+                        <input type="number" name="Notice" step="2" id="Notice">
+                    </td>
+                    <td rowspan="3">
+                        <label for="Dept">Department:</label>
+                        <!-- </td>
+                            <td> -->
+                            <select name="Dept" id="Dept">
+                            <option value="">Select Department</option>
+                            <option value="Development">Development</option>
+                            <option value="Design">Design</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="HR" disabled>HR</option>
+                        </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <!-- <td></td> -->
+                    <td>
+                        <label for="Exp_CTC">Expected CTC:</label>
+                        <input type="number" name="Exp_CTC" id="Exp_CTC">
+                        <!-- <td></td> -->
+                    </tr>
+                    <tr>
+                        <!-- <td></td> -->
+                        <td>
+                            <label for="Cur_CTC">Current CTC:</label>
+                            <input type="number" name="Cur_CTC" id="Cur_CTC">
+                        </td>
+                        
+                    </tr>
+            </table>
+
+            <input type="color" hidden><br/><br/>
+        
+            <input class="Btn" type="submit" name="Submit" value="Submit" style="color: green; font-family: 'Times New Roman', Times, serif;">
+            <input class="Btn" type="reset" name="Reset" value="Reset" style="color: red; font-family: 'Times New Roman', Times, serif;">
+        </fieldset>
+    </center>
+<br/><br/>
+    <center>
+        <!-- <input type="color" hidden><br/<br/>
+        
+            <input class="Btn" type="submit" name="Submit" value="Submit" style="color: green; font-family: 'Times New Roman', Times, serif;">
+            <input class="Btn" type="reset" name="Reset" value="Reset" style="color: red; font-family: 'Times New Roman', Times, serif;">
+            
+        </form> -->
+    </center>
+    </form>
+</body>
+<script>
+
+
+    
+    // Get current date and time
+    const form = document.getElementById("form");
+    
+    // let cnt=0
+    // /Languages Known Validations 
+    let h_checkbox = document.getElementById("Hindi");
+    let e_checkbox = document.getElementById("English");
+    let g_checkbox = document.getElementById("Gujarati");
+    let s_checkbox = document.getElementById("Spanish");
+    
+    h_checkbox.addEventListener("click",checkLang);
+    e_checkbox.addEventListener("click",checkLang);
+    g_checkbox.addEventListener("click",checkLang);
+                s_checkbox.addEventListener("click",checkLang);
+                
+                function checkLang()
+                {
+                    const rwsh = document.getElementsByClassName("rwsh");
+                    const rwse = document.getElementsByClassName("rwse");
+                    const rwsg = document.getElementsByClassName("rwsg");
+                    const rwss = document.getElementsByClassName("rwss");
+                    
+                    isCheck(Hindi, rwsh);
+                    isCheck(English, rwse);
+                    isCheck(Gujarati, rwsg);
+                    isCheck(Spanish, rwss);
+                }
+        
+                function isCheck(lang, rws)
+                {
+                    if(lang.checked)
+                    {
+                        for(let i=0;i<rws.length;i++)
+                        {
+                            
+                            rws[i].disabled = false;
+                            // console.log(rws[i]);
+                            rws[i].value = 1;                            
+                        }
+                    }
+                    else
+                    {
+                        for(let i=0;i<rws.length;i++)
+                        {
+
+                            rws[i].disabled = true;
+                            rws[i].value = 0;
+                        }
+                    }
+                    
+                    // if(r)
+                }
+
+                
+                ///Technologies Known Validations 
+                
+                let php_checkbox = document.getElementById("PHP");
+                let mysql_checkbox = document.getElementById("MySQL");
+                let laravel_checkbox = document.getElementById("Laravel");
+                let oracle_checkbox = document.getElementById("Oracle");
+                
+                php_checkbox.addEventListener("click",checkTech);
+                mysql_checkbox.addEventListener("click",checkTech);
+                laravel_checkbox.addEventListener("click",checkTech);
+                oracle_checkbox.addEventListener("click",checkTech);
+                
+                function checkTech()
+                {
+                    const bmeP = document.getElementsByClassName("bmeP");
+                    const bmeM = document.getElementsByClassName("bmeM");
+                    const bmeL = document.getElementsByClassName("bmeL");
+                    const bmeO = document.getElementsByClassName("bmeO");
+
+                    isCheckT(PHP, bmeP);
+                    isCheckT(MySQL, bmeM);              
+                    isCheckT(Laravel, bmeL);
+                    isCheckT(Oracle, bmeO);
+                }
+
+                function isCheckT(tech, bme)
+                {
+                    if(tech.checked)
+                    {
+                        for(let i=0;i<bme.length;i++)
+                            bme[i].disabled = false;
+                    }
+                    else
+                    {
+                        for(let i=0;i<bme.length;i++)
+                            bme[i].disabled = true;
+                    }
+                }
+
+///Form Validations -- Client Side
+      function validateForm() 
+      {
+
+            let fname = document.getElementById("FirstName");
+            let lname = document.getElementById("LastName");a
+            let dsg = document.getElementById("Designation");
+            let email_id = document.getElementById("Email_ID");
+            let add1 = document.getElementById("Add1");
+            let add2 = document.getElementById("Add2");
+            let city = document.getElementById("City");
+            let ph_no = document.getElementById("Phone_No");
+            let state = document.getElementById("State");
+            let gender = document.getElementById("Gender");
+            let zip_code = document.getElementById("Zip_Code");
+            let rel_status = document.getElementById("Rel_Status");
+            let dt = document.getElementById("dt");
+            let mnth = document.getElementById("mnth");
+            let yr = document.getElementById("yr");
+
+            let ref_C = document.getElementById("RefContact_No");
+
+
+
+            let board = document.getElementById("Board");
+            let course = document.getElementById("Course");
+            let Passing_Yr = document.getElementById("Passing_Yr");
+            let Percentage = document.getElementById("Percentage");
+
+            // let objarr = [{"col" : ""}]
+            
+            let x1 = document.forms["form"]["FirstName"].value;
+            let x2 = document.forms["form"]["LastName"].value;
+            let x3 = document.forms["form"]["Designation"].value;
+            let x4 = document.forms["form"]["Email_ID"].value;
+            let x5 = document.forms["form"]["Add1"].value;
+            let x6 = document.forms["form"]["Add2"].value;
+            let x7 = document.forms["form"]["City"].value;
+            let x8 = document.forms["form"]["Phone_No"].value;
+            // let x9 = document.forms["form"]["State"].value;
+            let x10 = document.forms["form"]["Male"];
+            let x102= document.forms["form"]["Female"];         
+            let x11 = document.forms["form"]["Zip_Code"].value;
+            let x13 = document.forms["form"]["dt"].value;
+            let x14 = document.forms["form"]["mnth"].value;
+            let x15 = document.forms["form"]["yr"].value;
+            
+
+            // let x12 = document.forms["form"]["Rel_Status"].value;
+            // let x13 = document.forms["form"]["DOB"].value;
+
+
+            let err1 = document.getElementById("spFirstName");
+            let cnt=0
+            if (x1 == "") {
+                err1.innerHTML="&nbsp;&nbsp;Name must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++;
+                           
+            }
+
+            let errdt = document.getElementById("spdt");
+            let errmnth = document.getElementById("spmnth");
+            let erryr = document.getElementById("spyr");
+
+            if([x13 || x14 || x15] == "")
+            {
+                errdt.innerHTML="&nbsp;&nbsp;DOB must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++;
+                console.log(cnt)
+            }else{
+                errdt.innerHTML=""              
+            }
+            
+
+            let err2 = document.getElementById("spLastName");
+            if (x2 == "") {
+                err2.innerHTML="&nbsp;&nbsp;Surname must be filled out !!! &nbsp;&nbsp;"
+                cnt++
+            }else{
+                err2.innerHTML=""                
+            }
+
+            let err3 = document.getElementById("spDesignation");
+            if (x3 == "") {
+                err3.innerHTML="&nbsp;&nbsp;Designation must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err3.innerHTML=""                
+            }
+            let err4 = document.getElementById("spEmail_ID");
+            if (x4 == "") {
+                err4.innerHTML="&nbsp;&nbsp;Email_ID must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err4.innerHTML=""                
+            }
+            let err5 = document.getElementById("spAdd1");
+            if (x5 == "") {
+                err5.innerHTML="&nbsp;&nbsp;Address-1 must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err5.innerHTML=""                
+            }
+            let err6 = document.getElementById("spAdd2");
+            if (x6 == "") {
+                err6.innerHTML="&nbsp;&nbsp;Address-2 must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err6.innerHTML=""                
+            }
+            let err7 = document.getElementById("spCity");
+            if (x7 == "") {
+                err7.innerHTML="&nbsp;&nbsp;City must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err7.innerHTML=""                
+            }
+            let err8 = document.getElementById("spPhone_No");
+            if (x8 == "") {
+                err8.innerHTML="&nbsp;&nbsp;Phone_No must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err8.innerHTML=""                
+            }
+
+            let err9 = document.getElementById("spState");
+            if(state.value==""){
+                err9.innerHTML="&nbsp;&nbsp;State must be selected !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err9.innerHTML=""
+            }
+        
+            let errrel = document.getElementById("spRel_Status");
+            if(rel_status.value=="")
+            {
+                errrel.innerHTML="&nbsp;&nbsp;Relationship Status must be selected !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                errrel.innerHTML=""
+            }
+            // for(let i=0;i<state.length;i++)
+            // {
+            //     let childrens = state[i].children;
+            //     for(let child of childrens)
+            //     {
+            //         console.log(child)
+            //         if(child.selected)
+            //         {
+            //             err9.innerHTML=""
+            //         }
+            //         else
+            //         {
+            //             err9.innerHTML="&nbsp;&nbsp;State must be filled out !!!  &nbsp;&nbsp;  "
+            //             cnt++
+            //         }
+            //     }
+            // }
+            //REFERENCE CONTACT NO Validation
+
+            // let err_ref_C = document.getElementById("spRefC")
+            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
+            //     {
+            //         console.log("Invalid Contact Number")
+            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
+            //         cnt++;
+            //     }
+            //     else
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Phone Number")
+
+            //         err_ref_C.innerHTML="";
+            //     }
+                
+
+            //     if(isNaN(x11)||x11.length!      rws[i].value = 0;
+            //     }
+            //     else
+            //     {
+            let err10 = document.getElementById("spGender");
+            if (!(x10.checked||x102.checked)) {
+                err10.innerHTML="&nbsp;&nbsp;Gender must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err10.innerHTML=""
+            
+            }
+            let err11 = document.getElementById("spZip_Code");
+            if (x11 == "") {
+                err11.innerHTML="&nbsp;&nbsp;Zip_Code must be filled out !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err11.innerHTML=""                
+            }        
+                // return checkPhone();
+            var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
+                if(ph_no.value.match(phoneNum)) {
+                       cnt=cnt
+                }
+                else {
+                    document.getElementById("Phone_No").className = document.getElementById("Phone_No").className + " error";
+                    cnt++;
+                }
+
+                var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+                if (x4.match(validRegex)) 
+                {
+
+                    // alert("Valid email address!");
+
+                    document.form.Email_ID.focus();
+                }   
+                else {
+
+                    alert("Invalid email address!");
+
+                    document.form.Email_ID.focus();
+
+                    cnt++;
+                }
+
+                // var reg_ph = /^\d{10}$/;
+                if(isNaN(x8)||x8.length!=10)
+                {
+                    console.log("Invalid Phone Number")
+                    err8.innerHTML = "Enter a valid Phone Number";
+                    cnt++;
+                }
+                else
+                {
+                    // alert("Not a valid Phone Number");
+                    console.log("Valid Phone Number")
+
+                    err8.innerHTML="";
+                }
+
+/////REFERENCE CONTACT NO Validation
+
+            // let err_ref_C = document.getElementById("spRefC")
+            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
+            //     {
+            //         console.log("Invalid Contact Number")
+            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
+            //         cnt++;
+            //     }
+            //     else
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Phone Number")
+
+            //         err_ref_C.innerHTML="";
+            //     }
+                
+
+            //     if(isNaN(x11)||x11.length!      rws[i].value = 0;
+            //     }
+            //     else
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Zip Code")
+
+            //         err11.innerHTML="";
+            //     }
+
+
+            //     ///Languages Known Validation
+
+                
+
+            // //     let err_board = document.getElementById("spBoard");
+            // // if(board.value==""){
+            // //     err_board.innerHTML="&nbsp;&nbsp;Board must be selected !!!  &nbsp;&nbsp;  "
+            // //     cnt++
+            // // }else{
+            // //     err_board.innerHTML=""
+            // // }
+
+            // let err_board = document.getElementById("spBoard");
+            // let err_psyr = document.getElementById("spPassing_Yr");
+            // let err_pr = document.getElementById("spPercentage");
+            // if(board.value!=="")
+            // {
+            //      if(Passing_Yr.value == "") 
+            //     {
+            //          err_psyr.innerHTML="&nbsp;&nbsp;Address-1 must be filled out !!!  &nbsp;&nbsp;  "
+            //           cnt++
+            //     }else{//REFERENCE CONTACT NO Validation
+
+            // let err_ref_C = document.getElementById("spRefC")
+            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
+            //     {
+            //         console.log("Invalid Contact Number")
+            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
+            //         cnt++;
+            //     }
+            //     else
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Phone Number")
+
+            //         err_ref_C.innerHTML="";
+            //     }
+                
+
+            //     if(isNaN(x11)||x11.length!      rws[i].value = 0;
+            //     }//REFERENCE CONTACT NO Validation
+
+            // let err_ref_C = document.getElementById("spRefC")
+            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
+            //     {
+            //         console.log("Invalid Contact Number")
+            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
+            //         cnt++;
+            //     }Ref_Contact
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Phone Number")
+
+            //         err_ref_C.innerHTML="";
+            //     }
+                
+
+            //     if(isNaN(x11)||x11.length!      rws[i].value = 0;
+            //     }
+            //     else
+            //     {
+            //     else
+            //     {
+            //     err_psyr.innerHTML=""                
+            //     }
+
+            //     if (Percentage.value == "") 
+            //     {
+            //          err_pr.innerHTML="&nbsp;&nbsp;Address-1 must be filled out !!!  &nbsp;&nbsp;  "
+            //           cnt++
+            //     }else{
+            //     err_pr.innerHTML=""                
+            //     }
+            //     err_board.innerHTML=""
+            // } else{
+            //     err_board.innerHTML="Invalid";
+            //     cnt++;//REFERENCE CONTACT NO Validation
+
+            // let err_ref_C = document.getElementById("spRefC")
+            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
+            //     {
+            //         console.log("Invalid Contact Number")
+            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
+            //         cnt++;
+            //     }
+            //     else
+            //     {
+            //         // alert("Not a valid Phone Number");
+            //         console.log("Valid Phone Number")
+
+            //         err_ref_C.innerHTML="";
+            //     }
+                
+
+            //     if(isNaN(x11)||x11.length
+            // rws[i].value = 0;
+            //     }
+            //     else
+            //     {
+
+
+            // let RefN = document.getElementById("RefName");
+            //     let RefC = document.getElementById("RefContact_No");
+            //     let RefR = document.getElementById("RefRelation");
+            //     let err_refc = document.getElementById("spRefC");
+
+            //     if(RefN != "")
+            //     {
+            //         checkref();
+            //     }
+                
+
+                
+                
+            //     function checkref()
+            //     {
+            //         if (RefC.value == "") {
+            //             err_refc.innerHTML="&nbsp;&nbsp;Contact_No must be filled out !!!  &nbsp;&nbsp;  "
+            //             cnt++
+                       
+            //         }else{
+            //             err_refc.innerHTML=""    
+         
+            //         }    
+            //         // if (RefC.value == "") {
+            //         //     err_refc.innerHTML="&nbsp;&nbsp;Contact_No must be filled out !!!  &nbsp;&nbsp;  "
+            //         //     cnt++
+            //         // }else{
+            //         //     err_refc.innerHTML=""                
+            //         // }    
+            //     }
+
+            if(cnt!=0){
+                console.log("False: "+cnt)
+                return false
+            }else{
+                job_ajax()
+                return true
+            }
+            return false
+        }       
+
+    //   form.addEventListener(
+    //   "focus",
+    //   (event) => {
+    //       event.target.style.background = "#CCCCFF";
+    //   },
+    //   true,
+    //   );
+
+    //   form.addEventListener(
+    //   "blur",
+    //   (event) => {
+    //       event.target.style.background = "";
+    //   },
+    //   true,
+    //   );
+
+    var now = new Date();
+    var datetime = now.toLocaleString();
+  
+    // Insert date and time into HTML
+    // document.getElementById("datetime").innerHTML = datetime;
+
+    // document.getElementById("datetime").style.color = "violet";
+    // document.getElementById("datetime").style.marginLeft = "45%";
+  
+
+
+    function rst()
+    {
+      alert("Form is successfully Reset !!");
+    }
+    function sub()
+    {
+      alert("Form is successfully Submitted on "+ datetime);
+    }
+
+    function testResults (form) {
+      var inputValue = form.FirstName.value;
+      alert ("Hey " + inputValue);
+  }
+
+  const email = document.getElementById("Email_ID");
+  const messagePara = document.getElementById("msg");
+//   email.addEventListener('change', () => {
+//            //messagePara.innerHTML = "Email input changed";
+//            alert("Email Input changed");
+//   });
+                   
+
+////////USING AJAX
+let id=undefined
+async function job_ajax()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/basic",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+        console.log("id = "+id);
+}
+
+async function job_ajax_edu()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/edu",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+async function job_ajax_work()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/work",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+async function job_ajax_tech()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/tech",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+async function job_ajax_lang()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/lang",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+async function job_ajax_ref()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/ref",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+async function job_ajax_pref()
+{
+    // var forms = document.querySelectorAll("job_app");
+    var forms = document.getElementById("form");
+        
+        const obj = new URLSearchParams(new FormData(forms));
+        obj.append('id', id);
+        console.log(obj)
+
+        let res1 = await fetch("http://localhost:4000/jobapp_ajax/insert/pref",
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            method : 'POST',
+            body: obj
+        })
+        .then((response)=>{
+            return response.json()
+        })
+        id=res1.id
+}
+// job_ajax()  
+    var pg=0
+                        // function onload()
+                        // {
+                        //     for(var i=0;i<6;i++)
+                        //     {
+                        //         // var field_id = document.querySelector("forms[i]");
+                        //         var field_id = forms[i];
+                        //         console.log(field_id);
+                        //         console.log(forms[i]);
+                        //     }
+                        
+                        // }
+                        let p1 = document.getElementById("Basic_Details");
+                        let p2 = document.getElementById("Education_Details");
+                        
+                        let p3 = document.getElementById("Work_Exp");
+                        let p4 = document.getElementById("Lang_Known");
+                        let p5 = document.getElementById("Tech_Known");
+                        let p6 = document.getElementById("Ref_Contact");
+                        let p7 = document.getElementById("Pref");
+                    
+                        // for(i=2;i<8;i++)
+                        // {
+                        //     p+i.setAttribute("hide", true);
+                        // console.log(pi);
+                        // }
+                    
+                        // for(let i=2;i<8;i++)
+                        // {
+                        //     console.log("p"+i.removeAttribute("hidden"));
+                        // }
+                        const url1 = window.location.href;
+
+                        if(url1.includes("id"))
+                        {
+                            console.log(url1.split("=")[1])
+                            basicShow(url1.split("=")[1]);
+                            // eduShow();
+                            // workShow();
+                            // langShow();
+                            // techShow();
+                            // refShow();
+                            // prefShow();
+                        }
+                        
+                        async function update_basic()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/basic",{
+                                    method:"post",
+                                    body:obj,
+                                    // id:id,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+                            }                                
+                        }
+                        async function update_edu()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/edu",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+                        async function update_work()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/work",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+                        async function update_lang()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/lang",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+                        async function update_tech()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/tech",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+                        async function update_pref()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/pref",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+                        async function update_ref()
+                        {
+                            var forms = document.getElementById("form");
+                            if(url1.includes("id"))
+                            {
+                                let id = url1.split("=")[1];
+                                const obj = new URLSearchParams(new FormData(forms));
+                                    obj.append('id', id);
+
+                                let up1 = await fetch("http://localhost:4000/jobapp_ajax/update/ref",{
+                                    method:"post",
+                                    body:obj,
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    }   
+                                })
+                                .then((response) => {
+                                    return response.json();
+                                })
+
+                            }                                
+                        }
+
+
+                        /////POPULATE DATA LOGIC
+
+
+                           
+                        async function basicShow(id)
+                        {
+                            var forms = document.getElementById("form");
+        
+                            // const obj = new URLSearchParams(new FormData(forms));
+                            // obj.append('id', id);
+                            // console.log(obj)
+
+                            let res1 = await fetch("http://localhost:4000/jobapp_ajax/dbfetch?id="+id)
+                            .then((response)=>{
+                                return response.json()
+                            })
+                            // FirstName = res1[0].FirstName;
+                            // LastName = res1[0].LastName;
+
+                            document.getElementById("FirstName").setAttribute("value",res1[0][0].FName);
+                            document.getElementById("LastName").setAttribute("value", res1[0][0].LName);
+                            document.getElementById("Designation").setAttribute("value",res1[0][0].Dsg);
+                            document.getElementById("Add1").innerText= res1[0][0].Add1
+                            document.getElementById("Add2").innerText= res1[0][0].Add2 
+                            document.getElementById("Email_ID").setAttribute("value", res1[0][0].Email_ID);
+                            document.getElementById("Phone_No").setAttribute("value", res1[0][0].Phone_No);
+                            
+                            document.getElementById("City").setAttribute("value",res1[0][0].City);
+                            // document.getElementById("State").setAttribute("value",res1[0][0].State);
+                            document.getElementById("State").value = res1[0][0].State
+                            // document.getElementById("Gender").setAttribute("value",res1[0][0].Gender);
+                            if (res1[0][0].Gender == 'M') {
+                                document.getElementById('Male').checked = true
+                            } else {
+                                document.getElementById('Female').checked = true
+                            }
+                            document.getElementById("Zip_Code").setAttribute("value",res1[0][0].Zip_Code);
+                            document.getElementById("Rel_Status").value = res1[0][0].Rel_Status;
+                            var date = res1[0][0].DOB.split("T")
+                            var d = date[0].split("-")
+                            document.getElementById("yr").value = d[0]
+                            document.getElementById("mnth").value = d[1]
+                            document.getElementById("dt").value = d[2]
+
+                            for(let i=0;i<res1[1].length;i++)
+                            {
+                                // console.log("Board".value)
+                                document.getElementById("Board"+i).value = res1[1][i].Board_Name;
+                                document.getElementById("Passing_Yr"+i).setAttribute("value",res1[1][i].Passing_Yr);
+                                document.getElementById("Percentage"+i).setAttribute("value",res1[1][i].Percentage);
+                            }
+                            // document.getElementById("Board").value = res1[1][0].Board_Name;
+                            // document.getElementById("Passing_Yr").setAttribute("value",res1[1][0].Passing_Yr);
+                            // document.getElementById("Percentage").setAttribute("value",res1[1][0].Percentage);
+
+                            // console.log("RESULT - 2 "+res1[2][0].Company_Name);
+                            for(let i=0;i<res1[2].length;i++)
+                            {    
+                                document.getElementById("Company"+i).setAttribute("value",res1[2][i].Company_Name);
+                                document.getElementById("Dsg"+i).setAttribute("value",res1[2][i].Dsg);
+
+
+                                    var expfrdate = res1[2][i].Exp_From.split("T");
+                                    var d1 = expfrdate[0].split("-");
+                                    console.log("date = " +expfrdate[0].split("-"))
+                                    document.getElementById("expfryr"+i).value = d1[0]
+                                    document.getElementById("expfrmnth"+i).value = d1[1]
+                                    document.getElementById("expfrdt"+i).value = d1[2]
+
+                                    var exptodate = res1[2][i].Exp_To.split("T");
+                                    var d2 = exptodate[0].split("-");
+                                    document.getElementById("exptoyr"+i).value = d2[0]
+                                    document.getElementById("exptomnth"+i).value = d2[1]
+                                    document.getElementById("exptodt"+i).value = d2[2]
+                            }
+
+                            console.log(res1[3][1])
+                            console.log("res1[5][0]  "+res1[5]);
+                            console.log("Lang_Name = "+res1[4][0].Lang_Name)
+                            // console.log("res1[6][0]  "+stringify(res1[6]));
+
+                            console.log("Tech_Name[1] = "+res1[3][1].Tech_Name);
+                            if(res1[3][0].Tech_Name == "PHP") 
+                            {
+                                document.getElementById("PHP").checked = true;
+                                
+                                if(res1[3][0].Tech_Exp == "Beginner")
+                                {
+                                    document.getElementById("Beginner").removeAttribute("disabled");
+                                    document.getElementById("Beginner").checked = true;
+                                }
+                                if(res1[3][0].Tech_Exp == "Mediator")
+                                {
+                                    document.getElementById("Mediator").removeAttribute("disabled");
+                                    document.getElementById("Mediator").checked = true;
+                                }
+                                if(res1[3][0].Tech_Exp == "Expert")
+                                {
+                                    document.getElementById("Expert").removeAttribute("disabled");
+                                    document.getElementById("Expert").checked = true;
+                                }
+                            }
+                            if(res1[3][1].Tech_Name == "MySQL") 
+                            {
+                                document.getElementById("MySQL").checked = true;
+                                if(res1[3][1].Tech_Exp == "Beginner")
+                                {
+                                    document.getElementById("Beginner2").removeAttribute("disabled");
+                                    document.getElementById("Beginner2").checked = true;
+                                }
+                                if(res1[3][1].Tech_Exp == "Mediator")
+                                {
+                                    document.getElementById("Mediator2").removeAttribute("disabled");
+                                    document.getElementById("Mediator2").checked = true;
+                                }
+                                if(res1[3][1].Tech_Exp == "Expert")
+                                {
+                                    document.getElementById("Expert2").removeAttribute("disabled");
+                                    document.getElementById("Expert2").checked = true;
+                                }
+                            }
+                            if(res1[3][2].Tech_Name == "Laravel") 
+                            {
+                                document.getElementById("Laravel").checked = true;
+                                if(res1[3][2].Tech_Exp == "Beginner")
+                                {
+                                    document.getElementById("Beginner3").removeAttribute("disabled");
+                                    document.getElementById("Beginner3").checked = true;
+                                }
+                                if(res1[3][2].Tech_Exp == "Mediator")
+                                {
+                                    document.getElementById("Mediator3").removeAttribute("disabled");
+                                    document.getElementById("Mediator3").checked = true;
+                                }
+                                if(res1[3][2].Tech_Exp == "Expert")
+                                {
+                                    document.getElementById("Expert3").removeAttribute("disabled");
+                                    document.getElementById("Expert3").checked = true;
+                                }
+                            }
+                            if(res1[3][3].Tech_Name == "Oracle") 
+                            {
+                                document.getElementById("Oracle").checked = true;
+                                if(res1[3][3].Tech_Exp == "Beginner")
+                                {
+                                    document.getElementById("Beginner4").removeAttribute("disabled");
+                                    document.getElementById("Beginner4").checked = true;
+                                }
+                                if(res1[3][3].Tech_Exp == "Mediator")
+                                {
+                                    document.getElementById("Mediator4").removeAttribute("disabled");
+                                    document.getElementById("Mediator4").checked = true;
+                                }
+                                if(res1[3][3].Tech_Exp == "Expert")
+                                {
+                                    document.getElementById("Expert4").removeAttribute("disabled");
+                                    document.getElementById("Expert4").checked = true;
+                                }
+                            }
+                            // if(document.getElementById("Hindi").checked == true)
+                            // {
+                            //     document.getElementById("HRead").checked
+                            // }
+                            console.log("Lang_name = "+res1[4][0].Lang_Name)
+                                var lang = res1[4][0].Lang_Name;
+                            if(res1[4][0].Lang_Name == "Hindi")
+                            {
+                                console.log("HELELLLLELLELo")
+                                document.getElementById("Hindi").setAttribute("checked","true");
+                                // document.getElementById("HRead").setAttribute("disabled","false");
+                                document.getElementById("HRead").removeAttribute("disabled");
+                                document.getElementById("HWrite").removeAttribute("disabled");
+                                document.getElementById("HSpeak").removeAttribute("disabled");
+                                document.getElementById("HRead").checked = true;
+                                document.getElementById("HWrite").checked = true;
+                                document.getElementById("HSpeak").checked = true;
+                            }
+                            if(res1[4][1].Lang_Name == "English")
+                            {
+                                console.log("Lang : English")
+                                document.getElementById("English").setAttribute("checked","true");
+                                // document.getElementById("HRead").setAttribute("disabled","false");
+                                document.getElementById("ERead").removeAttribute("disabled");
+                                document.getElementById("EWrite").removeAttribute("disabled");
+                                document.getElementById("ESpeak").removeAttribute("disabled");
+                                document.getElementById("ERead").checked = true;
+                                document.getElementById("EWrite").checked = true;
+                                document.getElementById("ESpeak").checked = true;
+                            }
+
+                            if(res1[4][2].Lang_Name == "Gujarati")
+                            {
+                                console.log("Lang : Gujarati")
+                                document.getElementById("Gujarati").setAttribute("checked","true");
+                                // document.getElementById("HRead").setAttribute("disabled","false");
+                                document.getElementById("GRead").removeAttribute("disabled");
+                                document.getElementById("GWrite").removeAttribute("disabled");
+                                document.getElementById("GSpeak").removeAttribute("disabled");
+                                document.getElementById("GRead").checked = true;
+                                document.getElementById("GWrite").checked = true;
+                                document.getElementById("GSpeak").checked = true;
+                            }
+
+                            // if(res1[4][3].Lang_Name == "Spanish")
+                            // {
+                            //     console.log("Lang : Spanish")
+                            //     document.getElementById("Spanish").setAttribute("checked","true");
+                            //     // document.getElementById("HRead").setAttribute("disabled","false");
+                            //     document.getElementById("SRead").removeAttribute("disabled");
+                            //     document.getElementById("SWrite").removeAttribute("disabled");
+                            //     document.getElementById("SSpeak").removeAttribute("disabled");
+                            //     document.getElementById("SRead").checked = true;
+                            //     document.getElementById("SWrite").checked = true;
+                            //     document.getElementById("SSpeak").checked = true;
+                            // }
+
+                            
+                            console.log(res1[5][0]);
+
+                            for(let i=0;i<res1[5].length;i++)
+                            {
+                                document.getElementById("RefName"+i).setAttribute("value",res1[5][i].RFName);
+                                document.getElementById("RefContact_No"+i).setAttribute("value",res1[5][i].Contact_No);
+                                document.getElementById("RefRelation"+i).setAttribute("value",res1[5][i].Relation);
+                            }
+
+                             if (res1[6][0].Pref_Loc == "Ahmedabad")
+                             {
+                                document.getElementById("Pref_Loc").value = "Ahmedabad";
+                             }
+                             if(res1[6][1].Pref_Loc == "Surat")
+                             {
+                                document.getElementById("Pref_Loc").value = "Surat";
+                             }
+                            //  if(res1[6][2].Pref_Loc == "Mumbai")
+                            //  {
+                            //     document.getElementById("Pref_Loc").value = "Mumbai";
+                            //  }
+
+                            document.getElementById("Notice").setAttribute("value",res1[6][0].Notice_Period);
+                            document.getElementById("Exp_CTC").setAttribute("value",res1[6][0].Expected_CTC);
+                            document.getElementById("Cur_CTC").setAttribute("value",res1[6][0].Current_CTC);
+                            
+                            document.getElementById("Dept").value = res1[6][0].Department;
+                            // document.getElementById("Dept").value = res1[6][1].Department;
+
+                        }
+                        function onnext()
+                        {
+                            pg++;
+                            console.log("pg + "+pg);
+                            if(pg<=0)
+                            {         
+                                pg=0;                                                       
+                            
+                                p1.removeAttribute("hidden");
+
+                            }
+                            if(pg==1){
+                                // console.log(p1)
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax()
+                                }
+                                else
+                                {
+                                    update_basic()
+                                }
+                                
+                               
+                                // if(url1.includes("id"))
+                                // {
+                                //     basicShow();
+                                //     // eduShow();
+                                //     // workShow();
+                                //     // langShow();
+                                //     // techShow();
+                                //     // refShow();
+                                //     // prefShow();
+                                // }
+                                p1.setAttribute("hidden","true")
+                                p2.removeAttribute("hidden");   
+                            }
+                            if(pg==2)
+                            {   
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_edu()
+                                }
+                                else
+                                {
+                                    update_edu()
+                                }
+                                
+                                p2.setAttribute("hidden","true");
+                                p3.removeAttribute("hidden");
+                            }
+                            if(pg==3)
+                            {
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_work()
+                                }
+                                else
+                                {
+                                    update_work()
+                                }
+                                p3.setAttribute("hidden", "true");
+                                p4.removeAttribute("hidden");
+                            }
+                            if(pg==4)
+                            {
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_lang()
+                                }
+                                else{
+                                    update_lang()
+                                }
+                                p4.setAttribute("hidden","true");
+                                p5.removeAttribute("hidden");
+                            }
+                            if(pg==5)
+                            {
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_tech()
+                                }
+                                else{
+                                    update_tech()
+                                }
+                                
+                                console.log("working pg 5")
+                                // console.log(p5.id+"hide")
+                                // console.log(p6.id+"show")
+                                p5.setAttribute("hidden","true");
+                                p6.removeAttribute("hidden");
+                            }
+                            if(pg==6)
+                            {
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_ref()
+                                }
+                                else
+                                {
+                                    update_ref()
+                                }
+                                
+                                p6.setAttribute("hidden","true");
+                                p7.removeAttribute("hidden");
+                            }
+                            if(pg==7)
+                            {
+                                if(!url1.includes("id"))
+                                {
+                                    job_ajax_pref()
+                                }
+                                else
+                                {
+                                    update_pref()
+                                }
+                                p7.removeAttribute("hidden");
+                            }
+                        }
+                    
+                        function onprev()
+                        {
+                            pg--;
+                            // p1.removeAttribute("hidden",true);
+                            // p2.setAttribute("hidden", true);
+
+
+                            // for(let i=p2;i<8;i++)
+                            // {
+                            //     i.removeAttribute("hidden");
+                            // }
+                            console.log("pg -" +pg);
+                            if(pg==7)
+                            {
+                                p7.removeAttribute("hidden");
+                            }
+                            if(pg==6)
+                            {
+                                p7.removeAttribute("hidden");
+                                // p8.setAttribute("hidden","true");
+                            }
+                            if(pg==5)
+                            {
+                                p6.removeAttribute("hidden");
+                                p7.setAttribute("hidden","true");
+                            }
+                            if(pg==4)
+                            {
+                                p5.removeAttribute("hidden");
+                                p6.setAttribute("hidden","true");
+                            }
+                            if(pg==3)
+                            {
+                                p4.removeAttribute("hidden");
+                                p5.setAttribute("hidden", "true");
+                            }
+                            if(pg==2)
+                            {   
+                                p3.removeAttribute("hidden");
+                                p4.setAttribute("hidden","true");
+                            }
+                            if(pg==1){
+                                console.log(p1)
+                                
+                                p3.setAttribute("hidden","true");
+                                p2.removeAttribute("hidden");
+                                // p1.setAttribute("hidden","true")
+                                // p2.removeAttribute("hidden");   
+                            }
+                            if(pg==0){
+                                p2.setAttribute("hidden","true")
+                                p1.removeAttribute("hidden")
+                            }
+
+                            if(pg<=0)
+                            {
+                                pg=0
+                            }
+                        }
+                        
+    </script>
+</html>

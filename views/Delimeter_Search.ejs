@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delimeter Based Search</title>
+    <style>
+        .deli th
+        {
+            background-color: bisque;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="deli">
+        <tr>
+            <th>ColName</th>
+            <th>Delimeter</th>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>_</td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td>^</td>
+        </tr>
+        <tr>
+            <td>Email_ID</td>
+            <td>$</td>
+        </tr>
+        <tr>
+            <td>Branch</td>
+            <td>}</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>:</td>
+        </tr>
+
+    </table>
+   <form method="get">
+    <table class="simple" align="center" id="simple">
+        <tbody class="cell">
+            <tr class="cell">
+                <td><label for="srch"> Enter the data :</label></td>
+                <td><input type="text" tabindex="1" name="srch" id="srch" value="<%= locals.S%>" placeholder="Enter delimeter separated data to search"></td>
+                <td><input type="submit" tabindex="2" name="go" value="GO" id="go"></td>
+            </tr>
+        </tbody>
+    </table>
+   </form> 
+
+
+  <% if(locals.fields != undefined || locals.fields != null || locals.res != undefined || locals.res != null || !locals.error){ %>
+   <table border="1" align="center" class="fl-table" id="fl-table">
+    <thead>
+    <tr>
+        <% fields.forEach(field => { %>
+            <th><%= field.name %></th>
+        <% }) %>
+    </tr>
+    </thead>
+    <tbody class="cell">
+
+    <% res.forEach(r =>{%>
+
+    <tr class="cell">
+    <% for(let i=0;i<fields.length;i++) {%>
+        <td><%= r[fields[i].name] %></td>
+        <%}%>
+        <%})%>
+    </tr>
+    </tbody>
+    <% } %>
+
+
+</table>
+</body>
+</html>

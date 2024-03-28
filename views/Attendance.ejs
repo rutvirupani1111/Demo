@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Report</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        * {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+body {
+    padding-top: 5px;
+    font-family: Helvetica;
+    -webkit-font-smoothing: antialiased;
+    background: rgba(71, 147, 227, 1);
+}
+h2 {
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 5px 0;
+    border: 2px solid black;
+}
+
+/* Table Styles */
+
+.table-wrapper {
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+}
+
+.fl-table {
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 50%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.fl-table td,
+.fl-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 25px;
+}
+
+.fl-table thead th {
+    color: #ffffff;
+    background: #4fc3a1;
+}
+
+.fl-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.fl-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+/* Responsive */
+
+@media (max-width: 400px) {
+    .fl-table {
+        display: block;
+        width: 100%;
+    }
+    .table-wrapper:before {
+        content: "Scroll horizontally >";
+        display: block;
+        text-align: right;
+        font-size: 22px;
+        color: white;
+        padding: 0 0 10px;
+    }
+    .fl-table thead,
+    .fl-table tbody,
+    .fl-table thead th {
+        display: block;
+    }
+    .fl-table thead th:last-child {
+        border-bottom: none;
+    }
+    .fl-table thead {
+        float: left;
+    }
+    .fl-table tbody {
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+    }
+    .fl-table td,
+    .fl-table th {
+        padding: 20px 0.625em 0.625em 0.625em;
+        height: 60px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 60px;
+        font-size: 26px;
+        text-overflow: ellipsis;
+    }
+    .fl-table thead th {
+        text-align: left;
+        border-bottom: 1px solid #f7f7f9;
+    }
+    .fl-table tbody tr {
+        display: table-cell;
+    }
+    .fl-table tbody tr:nth-child(odd) {
+        background: none;
+    }
+    .fl-table tr:nth-child(even) {
+        background: transparent;
+    }
+    .fl-table tr td:nth-child(odd) {
+        background: #f8f8f8;
+        border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tr td:nth-child(even) {
+        border-right: 1px solid #e6e4e4;
+    }
+    .fl-table tbody td {
+        display: block;
+        text-align: center;
+    }
+    form select option
+    {
+        font-size: 24px;
+    }
+    #month
+    {
+        font-size: 25px;
+    }
+}
+
+#arrow
+{
+    color: black;
+    font-size: 35px;
+    text-decoration: none;
+}
+
+</style>
+</head>
+<body style="text-align: center;">
+
+    <h2>Rutvi Rupani <br/> Task : Student Attendance Report</h2>
+    <form method="get">
+    <label for="month" style="font-size: 25px;">Choose a Month:</label>
+    
+    <select name="month" id="month"  onchange="submit()">
+    <% if (month == 12) { %>
+    <option value="12" selected style="font-size: 24px;">Decemeber 2023</option>
+    <%} else { %>
+    <option value="12">Decemeber 2023</option>
+    <%} %>
+    
+    <% if (month == 1) { %>
+    <option value="1" selected style="font-size: 24px;">January 2024</option>
+    <%} else { %>
+    <option value="1">January 2024</option>
+    <%} %>
+    
+    <% if (month == 2) { %>
+      <option value="2" selected style="font-size: 24px;">February 2024</option>
+    <%} else { %>  
+    <option value="2">February 2024</option>
+    <%} %>
+    <input type="hidden" value="<%= PID %>" name="pageID"/>
+    </select>
+    </form>
+
+    <div class="table-wrapper" style="padding: 20px;">
+        <table border="1" align="center" class="fl-table">
+            <thead>
+            <tr>
+                <% fields.forEach(field => { %>
+                    <th><%= field.name %>
+                    <a href = "/attendance_report/?pageID=1&month=<%= month%>&colName=<%=field.name%>&orderby=asc" id="arrow">&#8593;</a>
+                    <a href = "/attendance_report/?pageID=1&month=<%= month%>&colName=<%=field.name%>&orderby=desc" id="arrow">&#8595;</a>
+                    </th>
+                <% }) %>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% for(let i=0;i<res.length;i++) {%>
+                <tr>
+                    <td><%= res[i].Sid %></td>
+                    <td><%= res[i].Name %></td>
+                    <td><%= res[i].pDays %></td>
+                    <td><%= res[i].Average_Att.toFixed(2) %> %</td>
+                </tr>
+            </tbody>
+            <% } %>
+        </table>
+
+        <table align="center" style="font-size: 24px; background: white; color: red; font-weight: bolder;" border="2px solid black" >
+            <tr>
+                <td>
+                    <%if(PID==1){%>
+                        &lt;&lt;
+                        <%}else{%>
+                    <a href="/attendance_report/?pageID=1&month=<%= month%>&colName=<%=col%>&orderby=<%=order%>">
+                       &lt;&lt; 
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==1){%>
+                        &lt;
+                    <%}else{%>
+                    <a href="/attendance_report/?pageID=<%=parseInt(PID)-1%>&month=<%= month%>&colName=<%=col%>&orderby=<%=order%>">
+                        &lt;
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%= PID %></td>
+                </td>
+
+                <td>
+                    <%if(PID==10){%>
+                        >
+                    <%}else{%>
+                        
+                    <a href="/attendance_report/?pageID=<%=parseInt(PID)+1%>&month=<%= month%>&colName=<%=col%>&orderby=<%=order%>">
+                        >
+                    </a>
+                    <%}%>
+                </td>
+                <td>
+                    <%if(PID==10){%>
+                        >>
+                    <%}else{%>
+
+                    <a href="/attendance_report/?pageID=10&month=<%= month%>&colName=<%=col%>&orderby=<%=order%>">
+                         >>
+                    </a>
+                    <%}%>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

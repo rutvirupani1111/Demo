@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Events Table</title>
+    <!-- <script src="./EventTable.js"></script> -->
+    <style>
+table{
+    box-shadow: 0 7px 10px rgba(8, 9, 102, 0.2);
+    margin-left: 15px;
+}
+td
+{
+    padding: 30px;
+    min-width: 20%;
+    margin: 15px;
+}
+
+     tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
+        background-color: beige;
+        color: black;
+        margin: 5px;
+        min-width: 5cm;
+        min-block-size: 10cm;
+        padding: 10px;
+        text-align: center;
+}
+tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
+    background-color: black;
+        color: beige;
+        margin: 5px;
+        padding: 15px;
+        min-width: 5cm;
+        min-height: 5cm;
+        text-align: center;
+}
+    div {
+  width: 150px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  background-color: lightgray;
+  font-style: black;
+  overflow: scroll;
+}
+
+h1
+{
+    margin: 1em 0 0.5em 0;
+  color: #343434;
+  font-weight: normal;
+  font-family: 'Ultra', sans-serif;
+  font-size: 36px;
+  line-height: 42px;
+  text-transform: uppercase;
+  text-shadow: 0 2px white, 0 3px #777;
+}
+    </style>
+</head>
+<body>
+    <center><h1>JS Events Examples</h1></center>
+    <table border="2px solid" class="alternate">
+        <tr>
+            <td>
+                <h4>onClick</h4>
+                <button id="Btn">Click</button>
+            </td>
+            <td>
+                <h4>ondblClick</h4>
+                <button id="Btn2">double</button>
+            </td>
+            <td>
+                <h4>onContextMenu</h4>
+                <button id="Btn3">Right Click Me</button>
+            </td>
+            <td>
+                <h4>onMouseDown</h4>
+                <button id="Btn4">Click</button>
+            <td>
+                <div onmousemove="myMoveFunction()">
+                    <p>onmousemove</p>
+                    <p id="demo1">Mouse over me!</p>
+                </div>                  
+            </td>
+            <td>
+                <div onmouseenter="myEnterFunction()">
+                    <p>onmouseenter</p>
+                    <p id="demo2">Mouse over me!</p>
+                  </div>
+            </td>
+            <td>
+                <div onmouseover="myOverFunction()">
+                    <p>onmouseover</p>
+                    <p id="demo3">Mouse over me!</p>
+                </div>
+            </td>
+            <td>
+                <div onmouseleave="myLeaveFunction()">
+                    <p>onmouseleave</p>
+                    <p id="demo4">Mouse over and leave me!</p>
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <div onmouseout="myOutFunction()">
+                    <p>onmouseout</p>
+                    <p id="demo5">Mouse over and leave me!</p>
+                </div>
+            </td>
+            <td>
+                <h4>onMouseDown</h4>
+                <button id="Btn5">Change Color</button>
+            </td>
+            <td>
+                <h4>onMouseUp</h4>
+                <button id="Btn6">Change Color</button>
+            </td>
+            <td>
+                <h4>onwheel</h4>
+                <div id="myDIV" style="border:1px solid black">
+                    <p>Roll the mouse wheel over me!</p>
+                </div>
+            </td>
+            <td>
+                <center>
+                    <h4>onToggle</h4>
+                    <details id="detailsID">
+                        <summary>Show details</summary>
+                         <p>
+                          Rutvi Rupani
+                          24DEV030
+                        </p>
+                    </details>
+                </center>
+            </td>
+            <td>
+                <h4>onSelect</h4>
+                <input type="text" onselect="selEx()" value="Select this text">
+            </td>
+            <td>
+                <h4>onScroll</h4>
+                <div onscroll="scrollEx()">
+                    Rutvi Rupani <br/>
+                    24DEV030<br/>
+                    SDL-1<br/>
+                    eSparkBiz<br/>
+                    Silver-Radiance 2<br/>
+                    Sola Road <br/>
+                    Ahmedabad<br/>
+                </div>
+                <p>Scrolled <span id="demo">0</span> times.</p>
+            </td>
+            <td>
+                <h4>onkeydown</h4>
+                <input type="text" name="keyinp" onkeydown="keydn()" placeholder="Enter any key">
+                <!-- <div onkeydown="keydn()"></div> -->
+                <h5 id="txt"></h5>
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <h4>onkeypress</h4>
+                <input type="text" name="keypr" onkeypress="keyprs()"  placeholder="Enter any key">
+                <!-- <div onkeydown="keydn()"></div> -->
+                <h5 id="txt2"></h5>
+            </td>
+            <td>
+                <h4>onkeyup</h4>
+                <input type="text" name="keyu" onkeyup="keyup()"  placeholder="Enter any key">
+                <!-- <div onkeydown="keydn()"></div> -->
+                <h5 id="txt3"></h5>
+            </td>
+            <td>
+                <h4>onfocus & onblur</h4>
+                <input type="password" placeholder="Password">
+            </td>
+            <td>
+                <h4>ondrag</h4>
+                <input type="text" id="drag" value="Drag this Text">
+                <h5 id="d1"></h5>                
+            </td>
+            <td>
+                <h4>ondragenter</h4>
+                <input type="text" id="dragent" value="Drag this Text">
+                <h5 id="d2"></h5>                
+            </td>
+            <td>
+                <h4>ondrop</h4>
+                <input type="text" id="drop" value="Drop any text here">
+                <h5 id="d3"></h5>                
+            </td>
+            <td>
+                <h4>ondrop</h4>
+                <input type="text" id="drop" value="Drop any text here">
+                <h5 id="d3"></h5>                
+            </td>
+            <td>
+                <h4>onload</h4>
+                <center>
+                    <img id="image" src="/home/rutvi-rupani/Registration_JWT/views/favicon144.png" alt="MDN logo" width="72"/>
+                </center>
+                    
+                <button onclick="reload()">Reload</button>
+                <h5 id="loadmsg"></h5>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById("Btn").addEventListener("click",test);
+    
+    function test()
+    {
+        console.log("Single Click");
+        alert("Rutvi Rupani");
+    }
+    
+    document.getElementById("Btn2").addEventListener("dblclick",()=> {
+        console.log("Double Click");
+        test();
+    })
+    
+    document.getElementById("Btn3").addEventListener("contextmenu",(e)=>{
+        // e.preventDefault();
+        console.log("Right Click");
+        test();
+    })
+    
+    document.getElementById("Btn4").addEventListener("mousedown",()=> {
+        console.log("Mouse Down");
+        test();
+    })
+    
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    function myMoveFunction() {
+      document.getElementById("demo1").innerHTML = z+=1;
+    }
+    
+    function myEnterFunction() {
+        document.getElementById("demo2").innerHTML = x+=1;
+      }
+      
+      function myOverFunction() {
+        document.getElementById("demo3").innerHTML = y+=1;
+      }
+    
+      function myLeaveFunction() {
+        document.getElementById("demo4").innerHTML = x+=1;
+      }
+    
+      function myOutFunction() {
+        document.getElementById("demo5").innerHTML = y+=1;
+      }
+    
+      function mouseDown() {
+        document.getElementById("Btn5").style.fontSize = "20px" ;
+      }
+      
+      function mouseUp() {
+        document.getElementById("Btn6").style.color = "blue";
+      }
+    
+    document.getElementById("myDIV").addEventListener("wheel", wheeleve);
+    
+    function wheeleve() {
+      this.style.fontSize = "20px";
+    }
+    
+    document.getElementById("detailsID").addEventListener("toggle",togEx);
+    
+    function togEx()
+    {
+      alert("onToggle Event called");
+    }
+    
+    function selEx()
+    {
+      console.log("onSelect event occurred");
+      alert("onSelect event occurred");
+    }
+    
+    let ex=0;
+    function scrollEx()
+    {
+      document.getElementById("demo").innerHTML = ex+= 1;
+    }
+    
+    // attaching addEventListener for keydown
+    function keydn()
+    {
+      document.addEventListener('keydown', (event) => {
+      var keyName = event.key;
+      var keyCode = event.code;
+      // alert(`Keydown: The key pressed is ${keyName} and its code value is ${keyCode}`);
+      document.getElementById("txt").innerHTML = "KeyPressed  : "+keyName + ", Code : "+keyCode;
+    }, false);
+    
+    }
+    
+    function keyprs()
+    {
+      document.addEventListener('keypress', (event) => {
+      var keyName = event.key;
+      var keyCode = event.code;
+      // alert(`Keydown: The key pressed is ${keyName} and its code value is ${keyCode}`);
+      document.getElementById("txt2").innerHTML = "KeyPressed  : "+keyName + ", Code : "+keyCode;
+    }, false);
+    
+    }
+    
+    function keyup()
+    {
+      document.addEventListener('keyup', (event) => {
+      var keyName = event.key;
+      var keyCode = event.code;
+      // alert(`Keydown: The key pressed is ${keyName} and its code value is ${keyCode}`);
+      document.getElementById("txt3").innerHTML = "KeyPressed  : "+keyName + ", Code : "+keyCode;
+    }, false);
+    
+    }
+    
+    const password = document.querySelector('input[type="password"]');
+    
+    password.addEventListener("focus", (event) => {
+      event.target.style.background = "pink";
+    });
+    
+    password.addEventListener("blur", (event) => {
+      event.target.style.background = "";
+    });
+    
+    
+    document.getElementById("drag").addEventListener("drag", ()=>{
+      document.getElementById("d1").innerHTML = "Text is Dragged";
+    })
+    
+    document.getElementById("dragent").addEventListener("dragenter", ()=>{
+      document.getElementById("d2").innerHTML = "Text is Entered";
+    })
+    
+    document.getElementById("drop").addEventListener("drop", ()=>{
+      document.getElementById("d3").innerHTML = "Text is Dropped";
+    })
+    
+    const image = document.getElementById("image");
+    image.onload = () => {
+      document.getElementById("loadmsg").style.color="red";
+      document.getElementById("loadmsg").innerHTML += "<p>loaded!</p>";
+    };
+    
+    function reload() {
+      image.src = "/home/rutvi-rupani/Registration_JWT/views/favicon144.png";
+    }
+    
+    </script>
+</body>
+</html>

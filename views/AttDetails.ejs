@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    header h1 {
+                font-size: 60px;
+                font-weight: 600;
+                font-family: 'Roboto', sans-serif;
+                color: #b393d3;
+                text-transform: uppercase;
+                text-shadow: 1px 1px 0px #957dad,
+                            1px 2px 0px #957dad,
+                            1px 3px 0px #957dad,
+                            1px 4px 0px #957dad,
+                            1px 5px 0px #957dad,
+                            1px 6px 0px #957dad,
+                            1px 10px 5px rgba(16, 16, 16, 0.5),
+                            1px 15px 10px rgba(16, 16, 16, 0.4),
+                            1px 20px 30px rgba(16, 16, 16, 0.3),
+                            1px 25px 50px rgba(16, 16, 16, 0.2);
+          }
+        html,
+            body {
+            height: 100%;
+            text-align: center;
+            }
+            body {
+            margin: 0;
+            background: linear-gradient(45deg, #49a09d, #5f2c82);
+            font-family: sans-serif;
+            font-weight: 130;
+            }
+            .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            }
+            table {
+            width: 1000px;
+            border: 2px solid white;
+            border-collapse: collapse;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+            th,
+            td {
+                text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            }
+            th {
+            text-align: left;
+            }
+            thead th {
+                text-align: center;
+                border: 2px solid white;
+            background-color: #55608f;
+            }
+            tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            }
+            tbody td {
+            position: relative;
+            }
+            tbody td:hover:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -9999px;
+            bottom: -9999px;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+            }
+
+
+            header h3,h2 {
+                font-size: 30px;
+                font-weight: 600;
+                color: #fdfdfe;
+                text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+                    0px 0px 20px #b393d3;
+            }
+            
+    </style>
+</head>
+    <body style="text-align: center;">
+       <header>
+            <h1>
+                    RUTVI RUPANI<br/>
+                 Task-2 : Result Report Card
+            </h1>  
+       </header> 
+       <br/>
+       <hr style="border: 2px solid white;"/>
+       <hr style="border: 2px solid white;"/>
+     
+        <div class="container">
+            <br/> <br> <br/>
+            <table class="dynamo">
+                <thead>
+                <tr>
+                    <th rowspan="2">
+                        Subject_Code
+                    </th>
+                    <th colspan="2">
+                        Terminal
+                    </th>
+                    <th colspan="2">
+                        Prelims
+                    </th>
+                    <th colspan="2">
+                        Final
+                    </th>
+                    <th rowspan="2">
+                        Total
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Practical
+                    </th>
+                    <th>
+                        Theory
+                    </th>
+                    <th>
+                        Practical
+                    </th>
+                    <th>
+                        Theory
+                    </th>
+                    <th>
+                        Practical
+                    </th>
+                    <th>
+                        Theory
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                   
+                    <%var total=0%>
+                    <header>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                         <h2>Student_ID = <%=SID%>  &nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp; Name = <%=res[0].Name%></h2>
+                    </header>
+                   
+                   
+                    <%  for (let i = 0; i < res.length; i+=3) { %> 
+                    <tr>
+                        <%var sum=0%>
+                        <td><%= res[i].Subj_Code %></td>
+                        <% for (let j = i; j < 3+i; j++) { %>
+                            <td><%= res[j].Practical_Marks %></td>
+                            <%sum+=parseInt(res[j].Practical_Marks)%>
+                            <%total+=parseInt(res[j].Practical_Marks)%>
+                            <td><%= res[j].Theory_Marks %></td>
+                            <%sum+=parseInt(res[j].Theory_Marks)%>
+                            <%total+=parseInt(res[j].Theory_Marks)%>
+                            
+                        <% } %>
+                        <td><%=sum%></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <header style="background-color: black; border-radius: 20px; ">
+                <h3>Total Marks = <%=total%>  /  1200</h3>
+                <%var per = (total*100)/1200%>
+                <h3>Percentage = <%=per.toFixed(2)%> %</h3>
+            </header>
+
+            <% if(per>=40) {%>
+               <marquee direction="right-reverse"><h3 style="color: white; background-color: green; font-size: 30px;" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Congratulations !!! You've passed the exam.</h3></marquee> 
+            <%} else{%>
+                <marquee direction="right-reverse"><h3 style="color: white; background-color: red; font-size: 30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Oops !!! You've failed the exam.</h3></marquee>
+            <%}%>
+</body>
+</html>

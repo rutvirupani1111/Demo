@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigment - 2</title>
+    <style>
+        table{
+            border-radius: 5px;
+            border-color: black;
+        }
+        td
+        {
+            background-color: blue;
+            margin: 20px;
+            padding : 20px;
+            border-radius: 5px;
+        }
+        </style>
+
+
+</head>
+<body bgcolor="lightgray">
+   <center>
+
+    <h3> Score : <span id="score">0</span></h3>
+    <h3> Time Left : <span id="time">0</span></h3>
+    <table class="t" id="t">
+        <tr>
+            <td onclick="addc" id="cell"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+   </center>
+    
+</body>
+        <script>
+    
+            // // random color selector
+            // const colors = [];
+            // for(let i=0;i<10;i++)
+            // {
+            //     const randomColor = "#" + Math.floor(Math.random() * 167772).toString(16);
+            //     colors.push(randomColor);
+            // }
+            // console.log(colors); 
+            
+            //document.getElementById("cell").addEventListener("click",addc);
+            
+                
+    
+            let td = document.getElementsByTagName("td");
+
+                let score = -1;
+
+                td[0].addEventListener("click",addc);
+                td[0].style.opacity=0.5;
+                // for(let i=0;i<td.length;i++ ){
+                //     td[i].addEventListener("click",addc);
+                // }
+            function addc()
+            {
+                var table = document.getElementById("t");
+                var rowCount = table.rows.length;
+    
+                var row = table.insertRow(rowCount);
+                var colCount = table.rows[0].cells.length;
+    
+                for(var i=0; i<colCount; i++)
+                {
+                    var newCell = row.insertCell(i);
+                    newCell.innerHTML = table.rows[0].cells[i].innerHTML;
+                }
+    
+                let tr = document.getElementsByTagName("tr");
+                let tl = document.querySelector("table");
+                for(let i=0;i<tr.length;i++)
+                {
+                    tr[i].appendChild(document.createElement("td"));
+                }
+                for(let i=0;i<td.length;i++)
+                {
+                    td[i].addEventListener("click",incorrect);
+                }
+                td[0].style.opacity=0.5;
+
+                function colors()
+                {
+                    let r = Math.floor(Math.random(10)*255);
+                    let g = Math.floor(Math.random(10)*255);
+                    let b = Math.floor(Math.random(10)*255);
+    
+                    return `rgb(${r}, ${g}, ${b})`;
+                }
+    
+                let c = colors();
+                for(let i=0; i<td.length; i++)
+                {
+                    td[i].style.background = c;
+                    console.log(c);
+                    td[i].style.opacity=1;
+                }
+                let correct = opac();
+            }
+            function incorrect()
+            {
+                score-=1;
+                document.getElementById("score").innerHTML=score;
+                console.log(score);
+            }
+
+            let x = 0;
+
+            function opac()
+            {
+                td[0].removeEventListener("click",addc);
+                let x = Math.floor(Math.random(10)*td.length);
+                td[x].style.opacity=0.3;
+                td[x].addEventListener("click",addc);
+                score+=2;
+                document.getElementById("score").innerHTML=score;
+
+            }
+
+            let count = 10;
+            const timer = setInterval(function() {
+            count--;
+            console.log(count);
+            document.getElementById("time").innerHTML=count;
+            if (count === 0) {
+                clearInterval(timer);
+                console.log("Time's up!");
+                alert("OOps !! Time's Up !!!")
+                document.getElementById("t").innerHTML="<h1>Game Over</h1>";
+            }
+            }, 1000);
+
+        </script>
+</html>

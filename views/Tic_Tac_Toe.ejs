@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body
+        {
+            background-color: black;
+        }
+        .row
+        {
+            /* padding: 5px; */
+            /* border: 2px solid; */
+            display: flex;
+            /* margin:2px; */
+        }
+        .box
+        {
+            /* padding-top: 30px; */
+            padding : 10% 10%;
+            border: 2px solid;
+            border-radius: 5px;
+            /* margin-top: 10px; */
+            margin: 2px;
+            width: 50%;
+            align-items: center;
+            align-content: center;
+            background-color: rgb(122, 255, 255);
+            font-size: 30px;
+            font-weight: bolder;
+            /* max-width: 3cm;
+            min-height: 3cm; */
+        }
+        #d1,#d2,#d3
+        {
+            /* padding-top: 2%; */
+            margin-left: 35%;
+            margin-right: 35%;
+            /* border: 2px solid red; */
+        }
+        
+        h1{
+            margin-top: 8%;
+            margin-bottom: 3%;
+        }
+        #btn
+        {
+            margin-top: 5%;
+            padding : 20px;
+            color: #130606;
+            background-color: rgb(177, 177, 247);
+            font-size: larger;
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight: bolder;
+            border-radius: 10px;
+            border: none;
+            
+        }
+        #btn:hover
+        {
+            background-color: lightgreen;
+        }
+        
+        #btn:active
+        {
+            background-color: white;
+        }
+        
+        p {
+	margin: auto;
+	letter-spacing: 0.0015em;
+	font-size: 2em;
+    color: white;
+	text-shadow: 0 1px #128397, -1px 0 #c4cdce, -1px 2px #128397, -2px 1px #c4cdce,
+		-2px 3px #128397, -3px 2px #c4cdce, -3px 4px #128397, -4px 3px #c4cdce,
+		-4px 5px #128397, -5px 4px #c4cdce, -5px 6px #128397, -6px 5px #c4cdce,
+		-6px 7px #128397, -7px 6px #c4cdce, -7px 8px #128397, -8px 7px #c4cdce;
+	text-align: center;
+}
+
+
+        
+    </style>
+</head>
+<center>
+<body>
+    <h1><p>Tic Tac Toe</p></h1>
+        <div id="d1" class="row">
+            <div id="0" class="box"></div>
+            <div id="1" class="box"></div>
+            <div id="2" class="box"></div>
+        </div>
+        <div id="d2" class="row">
+            <div id="3" class="box"></div>
+            <div id="4" class="box"></div>
+            <div id="5" class="box"></div>
+        </div>
+        <div id ="d3" class="row">
+            <div id="6" class="box"></div>
+            <div id="7" class="box"></div>
+            <div id="8" class="box"></div>
+        </div>
+        
+        <button id="btn" onclick="restart()">Restart</button>
+
+            
+            
+    </body>
+</center>
+        <script type="text/javascript">
+            function start()
+            {
+                let len = document.getElementsByClassName("box").length;
+            for(let i=0;i<len;i++)
+            {
+                document.getElementsByClassName("box")[i].addEventListener("click",check);
+                document.getElementById(i).style.color="rgb(122, 255, 255)";
+                document.getElementById(i).innerHTML=".";
+            }
+            let vi = "O";
+            let count = 0;
+
+            function check()
+            {   
+
+                let cell = this.getAttribute("id");
+                document.getElementById(cell).style.color="black";
+                if(vi == 'X')
+                {
+                    vi = 'O';
+                    // console.log(vi);
+                    Cont = document.getElementById(cell).innerHTML = "O";
+                }
+                else
+                {
+                    vi = 'X';
+                    // console.log(vi);
+                    document.getElementById(cell).innerHTML = "X";
+                }
+
+                document.getElementById(cell).removeEventListener("click",check);
+
+                count += 1;
+                if(count >= 5)
+                {
+                    win(cell);
+                }
+
+            }
+            function win(cell)
+            {
+                const arr = 
+                [
+                    [0,1,2],
+                    [3,4,5],
+                    [6,7,8],
+                    [0,4,8],
+                    [0,3,6],
+                    [1,4,7],
+                    [2,5,8],
+                    [6,4,2]
+                ];
+                //let cell = this.getAttribute("id");
+                
+                let len = document.getElementsByClassName("box").length;
+
+                //let cont = document.getElementById(cell).textContent;
+                // let cont = this.Cont;
+                // console.log(cont);
+
+                for(let a of arr)
+                {
+                   // console.log(document.getElementById(a[0]).innerText,document.getElementById(a[1]).innerText,document.getElementById(a[2]).innerText, a);
+                    if(document.getElementById(a[0]).innerText == document.getElementById(a[1]).innerText &&
+                     document.getElementById(a[1]).innerText == document.getElementById(a[2]).innerText && 
+                     document.getElementById(a[0]).innerText != ".")
+                    {
+                        console.log("true");
+                        alert(`you won ${document.getElementById(cell).innerText}`);
+                        for(let i=0;i<len;i++)
+                        {
+                            document.getElementById(cell).removeEventListener("click",check);
+                        }
+                        return true;
+                    }
+                    else
+                    {
+                        console.log("false");
+                    }
+                }
+                // for(i=0;i<3;i++)
+                // {
+                //     if(document.getElementBy)
+                // }
+                // for(let i=0;i<len;i++)
+                // {   
+                //     if(document.getElementsByClassName("box")[i]==arr[]
+                // }
+
+            }
+            }
+            start();
+            function restart()
+            {
+                start();
+            }
+            </script>
+</html>

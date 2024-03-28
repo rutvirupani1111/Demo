@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        table{
+            margin: auto;
+        }
+ tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
+        background-color: #3480d6;
+        color: black;
+        margin: 5px;
+        min-width: 5cm;
+        min-block-size: 10cm;
+        padding: 10px;
+        text-align: center;
+}
+tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
+    background-color: #101820;
+        color: beige;
+        margin: 5px;
+        padding: 15px;
+        min-width: 5cm;
+        min-height: 5cm;
+        text-align: center;
+}
+
+#Add
+{
+    margin-left: 37.5%;
+}
+
+#Delete2
+{
+    margin-left: 37.5%;
+}
+button{
+
+    outline: 0;
+
+                    grid-gap: 8px;
+                    align-items: center;
+                    background-color: #bfb6c5;
+                    color: #000;
+                    border: 1px solid #000;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    display: inline-flex;
+                    flex-shrink: 0;
+                    font-size: 16px;
+                    gap: 8px;
+                    justify-content: center;
+                    line-height: 1.5;
+                    overflow: hidden;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    text-overflow: ellipsis;
+                    transition: all .14s ease-out;
+                    white-space: nowrap;
+                    margin: 7px;
+                    width: 3cm;
+                    font-size: 25px;
+                    font-weight: bold;
+}
+
+
+                   button:hover {
+                        box-shadow: 4px 4px 0 #000;
+                        transform: translate(-4px,-4px);
+                    }
+                    button :focus-visible{
+                        outline-offset: 1px;
+                    }
+          
+                    
+                    @font-face {
+  font-family: 'Rocher';
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
+body {
+  font-family: 'Rocher';
+  /* text-align: center; */
+  font-size: 40px;
+  /* height: 100vh; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center;
+  justify-content: center; */
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+
+@font-palette-values --Purples {
+  font-family: Rocher;
+  base-palette: 6;
+}
+
+.purples {
+  font-palette: --Purples;
+}
+
+    </style>
+    <script>
+        /* // function onColPlus()
+        // {#FCF6F5ount=tbl.rows.length;
+        //     colCount=tbl.rows[0].cells.length;columns
+        //     for(i=0;i<rowCount;i++)
+        //     {
+        //         tbl.rows[i].insertCell(0);
+        //     }
+        // }
+        // function onColMinus()
+        // {
+        //     var tbl=document.getElementById('');
+        //     rowCount=tbl.rows.length;
+        //     colCount=tbl.rows[0].cells.length;
+        //     for(i=0;i<rowCount;i++)
+        //     {
+        //         tbl.rows[i].deleteCell(0);
+        //     }
+        // } */
+        function addRow()
+        {
+            var tabl=document.getElementById('tbl');
+            var row=document.createElement('tr');
+            row.setAttribute("class","rows")
+            tabl.appendChild(row);
+            var cols=document.getElementsByClassName('columns');
+            var colnums=cols.length;
+            for(let i=0;i<colnums;i++)
+            {
+                var cell=document.createElement('td');
+                // cell.innerHTML="new";
+                cell.setAttribute("id","add");
+                row.appendChild(cell);
+            }
+        }
+        function addColumn()
+        {
+            var rows=document.getElementsByClassName("rows");
+            var numrows=rows.length;
+            for(let i=0;i<numrows;i++)
+            {
+                if(i==0)
+                {
+                    var cell=document.createElement('td');
+                    //cell.innerHTML="new";
+                    cell.setAttribute("class","columns");
+                    cell.setAttribute("id","add");
+                    rows[i].appendChild(cell);               
+                }
+                else
+                {
+                    var cell=document.createElement('td');
+                   // cell.innerHTML="new";
+                    cell.setAttribute("id","odd");
+                    rows[i].appendChild(cell);
+                }
+            }
+        }
+
+        function removeRow()
+        {
+            var rows=document.getElementsByClassName('rows');
+            var numRows = rows.length;
+            if(numRows>2)
+            {
+                var tabl=document.getElementById("tbl");
+                var lchild=tabl.lastChild;
+                tabl.removeChild(lchild);
+            }
+            if(numRows<3)
+            {
+                alert("Oops!! Cannnot delete rows anymore");
+            }
+        }
+        
+        function removeColummn()
+        {
+            var cols=document.getElementsByClassName('columns');
+            var rows=document.getElementsByClassName('rows');
+            var numrows=rows.length;
+            var columns=cols.length;
+            if(columns > 2)
+            {
+                for(i=0;i<numrows;i++)
+                {
+                    var lchild=rows[i].lastChild;
+                    rows[i].removeChild(lchild);
+                }
+            }
+            if(columns < 3)
+            {
+                alert("Oops!! Cannnot delete columns anymore");
+
+            }
+        }
+    </script>
+</head>
+<body bgcolor="#FCF6F5">
+
+    <h1 class="purples">Dynamic Table</h1>
+    <br/>
+    <button id="Add" onclick="addColumn()">+</button>
+    <button id="Delete" onclick="removeColummn()">-</button>
+    <table border="2px solid" id="tbl">
+        <tr class="rows">
+            <td class="columns">
+                
+            </td>
+            <td></td>
+        </tr>
+        <tr class="rows">
+            <td class="columns">
+                
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <button id="Add" onclick="addRow()">+</button><br/>
+    <button id="Delete2" onclick="removeRow()">-</button>
+</body>
+</html>
