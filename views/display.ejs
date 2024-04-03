@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees Listing</title>
+    <style>
+        #ins
+        {
+            background-color: blueviolet;
+            border: 2px solid black;
+            color: whitesmoke;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+        }
+        #ins a{
+            text-decoration: none;
+            color: antiquewhite;
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+
+    <br>
+    <span id="ins"><a href="/insert">Insert</a></span>
+    <br>
+    <table border="1" align="center" class="dynamo">
+        <thead>
+            <tr>
+                <% fields.forEach(field => { %>
+                    <th><%= field.name %></th>
+                    <% }); %>
+                    <th>Update</th>
+            </tr>
+        </thead>
+        <tbody class="cell">
+            <% res.forEach(result => { %>
+                <tr>
+                    <%var eid = result.EID%>
+                    <% for (let i=0; i < fields.length; i++) { %>
+                        <td><%= result[fields[i].name] %></td>
+                        <% } %>
+                        <td class="view">
+                            <a href="/update/?id=<%=eid%>">Update</a>
+                        </td> 
+            <% }) %>
+                </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>
