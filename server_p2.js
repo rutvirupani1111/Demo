@@ -36,13 +36,12 @@ app.get("/", (req, res) => {
   })
 });
 
-
-
 app.get("/update", (req, res) => {
   res.render("p.ejs");
 });
 
-app.post("/update/basic", (req, res) => {
+app.post("/update/basic", (req, res) => 
+{
   let data = req.body;
   let id = req.body.id;
   console.log(id)
@@ -83,7 +82,7 @@ app.post("/update/edu", (req, res) => {
     {
       if(i==0){
         var query_2 = `UPDATE School_Deets SET Board_Name="${C[i]}",Passing_Yr="${PY[i]}",Percentage="${P[i]}" WHERE EID = ${id} AND Std="SSC";`;       
-      }else if(i==1){
+      }else if(i==1){ 
         var query_2 = `UPDATE School_Deets SET Board_Name="${C[i]}",Passing_Yr="${PY[i]}",Percentage="${P[i]}" WHERE EID = ${id} AND Std="HSC";`;  
       }else if(i==2){
         var query_2 = `UPDATE School_Deets SET Board_Name="${C[i]}",Passing_Yr="${PY[i]}",Percentage="${P[i]}" WHERE EID = ${id} AND Std="Graduation";`;  
@@ -241,7 +240,6 @@ app.post("/insert/basic", (req, res) => {
       console.log("Basic Details Inserted");
     }
   });
-
  
 });
 

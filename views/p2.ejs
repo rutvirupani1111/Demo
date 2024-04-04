@@ -927,7 +927,7 @@
       {
 
             let fname = document.getElementById("FirstName");
-            let lname = document.getElementById("LastName");a
+            let lname = document.getElementById("LastName");
             let dsg = document.getElementById("Designation");
             let email_id = document.getElementById("Email_ID");
             let add1 = document.getElementById("Add1");
@@ -1390,7 +1390,7 @@ async function job_ajax()
         const obj = new URLSearchParams(new FormData(forms));
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/basic",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/basic",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1415,7 +1415,7 @@ async function job_ajax_edu()
         obj.append('id', id);
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/edu",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/edu",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1435,7 +1435,7 @@ async function job_ajax_work()
         const obj = new URLSearchParams(new FormData(forms));
         obj.append('id', id);
         console.log(obj)
-        let res1 = await fetch("http://localhost:5600/insert/work",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/work",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1457,7 +1457,7 @@ async function job_ajax_tech()
         obj.append('id', id);
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/tech",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/tech",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1479,7 +1479,7 @@ async function job_ajax_lang()
         obj.append('id', id);
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/lang",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/lang",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1501,7 +1501,7 @@ async function job_ajax_ref()
         obj.append('id', id);
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/ref",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/ref",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1523,7 +1523,7 @@ async function job_ajax_pref()
         obj.append('id', id);
         console.log(obj)
 
-        let res1 = await fetch("http://localhost:5600/insert/pref",
+        let res1 = await fetch("http://localhost:4000/job_app/insert/pref",
         {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -1591,7 +1591,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                 obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/basic",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/basic",{
                                     method:"post",
                                     body:obj,
                                     // id:id,
@@ -1614,7 +1614,7 @@ async function job_ajax_pref()
                                     obj.append('id', id);
                                     // obj.append('SchID', SchID);
 
-                                let up1 = await fetch("http://localhost:5600/update/edu",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/edu",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1636,7 +1636,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                     obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/work",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/work",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1658,7 +1658,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                     obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/lang",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/lang",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1680,7 +1680,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                     obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/tech",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/tech",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1702,7 +1702,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                     obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/pref",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/pref",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1724,7 +1724,7 @@ async function job_ajax_pref()
                                 const obj = new URLSearchParams(new FormData(forms));
                                     obj.append('id', id);
 
-                                let up1 = await fetch("http://localhost:5600/update/ref",{
+                                let up1 = await fetch("http://localhost:4000/job_app/update/ref",{
                                     method:"post",
                                     body:obj,
                                     headers: {
@@ -1751,7 +1751,7 @@ async function job_ajax_pref()
                             // obj.append('id', id);
                             // console.log(obj)
 
-                            let res1 = await fetch("http://localhost:5600/dbfetch?id="+id)
+                            let res1 = await fetch("http://localhost:4000/job_app/dbfetch?id="+id)
                             .then((response)=>{
                                 return response.json()
                             })
