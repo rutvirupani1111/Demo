@@ -86,25 +86,25 @@
     <div class="btns" style="margin-left: 680px; align-items: center;"> 
         <ul class="btn_next">
             <li> 
-                <a href="#" onclick="job_ajax()">Basic Details</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax()">Basic Details</a>
             </li>
             <li> 
-                <a href="" onclick="job_ajax_edu()">Education Details</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_edu()">Education Details</a>
             </li>
             <li> 
-                <a href="#" onclick="job_ajax_work()">Work Experience</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_work()">Work Experience</a>
             </li>
             <li> 
-                <a href="#" onclick="job_ajax_lang()">Languages Known</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_lang()">Languages Known</a>
             </li>
             <li> 
-                <a href="#" onclick="job_ajax_tech()">Technologies Known</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_tech()">Technologies Known</a>
             </li>
             <li> 
-                <a href="#" onclick="job_ajax_ref()">References</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_ref()">References</a>
             </li>
             <li> 
-                <a href="#" onclick="job_ajax_pref()">Preferences</a>
+                <a href="http://localhost:4000/job_app/insert" onclick="job_ajax_pref()">Preferences</a>
             </li>
         </ul>
     </div>
@@ -235,7 +235,7 @@
                         <td>
                             <input type="radio" name="Gender" id="Female" value="F">
                             <label for="Female">Female</label>
-                            <input type="radio" name="Gender" id="Male" value="M    ">
+                            <input type="radio" name="Gender" id="Male" value="M">
                             <label for="Male">Male</label>
                             <i class="fa-solid fa-circle-check"></i>
                         <i class="fa-solid fa-circle-exclamation"></i>
@@ -244,8 +244,9 @@
                             <span class="err_msg" id="spGender"></span>
                         </td>  
                         <!-- res.send({id:result.insertId}) -->
+                        <td>
                             <label for="Zip_Code">Zip-Code:</label>
-                            </td>
+                        </td>
                             <td>
                                 <input type="number" id="Zip_Code" name="Zip_Code" maxlength="6"  placeholder="Ex : 394210">
                                 <i class="fa-solid fa-circle-check"></i>
@@ -460,12 +461,16 @@
                     </td>
                     <td>
                         <input type="text" name="Company" id="Company0">
+                        <br/>
+                    <span class="err_msg" id="spCompany"></span>
                     </td>
                     <td>
                         <label for="Dsg">Designation:</label>
                     </td>
                     <td>
                         <input type="text" name="Dsg" draggable="true" id="Dsg0">
+                        <br/>
+                        <span class="err_msg" id="spDsg"></span>
                     </td>
                     <td>
                         <label for="Exp_From">From:</label>
@@ -473,6 +478,8 @@
                     <td>
                         <!-- <input type="date" name="Exp_From"> -->
                         <input type="number" name="expfrdt" max="31" min="1" id="expfrdt0"> / <input type="number" name="expfrmnth" min="1" max="12" id="expfrmnth0"> / <input type="number" name="expfryr" min="1995" max="2003" id="expfryr0">
+                        <br/>
+                        <span class="err_msg" id="spexpfr"></span>
                     </td>
                     <td>
                         <label for="Exp_To">To:</label>
@@ -480,6 +487,8 @@
                     <td>
                         <!-- <input type="date" name="Exp_To"> -->
                         <input type="number" name="exptodt" max="31" min="1" id="exptodt0"> / <input type="number" name="exptomnth" min="1" max="12" id="exptomnth0"> / <input type="number" name="exptoyr" min="1995" max="2003" id="exptoyr0">
+                        <br/>
+                        <span class="err_msg" id="spexpto"></span>
                     </td>
                 </tr>
                 <tr>
@@ -714,6 +723,8 @@
                     </td>
                     <td>
                         <input type="text" name="RefName" id="RefName0">
+                        <br/>
+                        <span class="err_msg" id="spRefName"></span>
                     </td>
                     <td>
                         <label for="Contact_No">Contact No.:</label>
@@ -728,8 +739,8 @@
                     </td> 
                     <td>
                         <input type="text" name="RefRelation" id="RefRelation0">
-                        <!-- <br/>
-                            <span class="err_msg" id="spPercentage"></span> -->
+                        <br/>
+                            <span class="err_msg" id="spRefRelation"></span>
                     </td> 
                 </tr>
             
@@ -770,12 +781,16 @@
                                     <option value="Surat">Surat</option>
                                     <option value="Mumbai">Mumbai</option>
                                 </select>
+                                <br/>
+                                <span class="err_msg" id="spPref_Loc"></span>
 
                     <td>
                         <label for="Notice">Notice Period:</label>
                     <!-- </td> 
                         <td> -->
                         <input type="number" name="Notice" step="2" id="Notice">
+                        <br/>
+                        <span class="err_msg" id="spNotice"></span>
                     </td>
                     <td rowspan="3">
                         <label for="Dept">Department:</label>
@@ -788,21 +803,27 @@
                             <option value="Marketing">Marketing</option>
                             <option value="HR" disabled>HR</option>
                         </select>
+                        <br/>
+                        <span class="err_msg" id="spDept"></span>
                         </td>
 
                     </tr>
                     <tr>
-                        <!-- <td></td> -->
+
                     <td>
                         <label for="Exp_CTC">Expected CTC:</label>
                         <input type="number" name="Exp_CTC" id="Exp_CTC">
-                        <!-- <td></td> -->
+                        <br/>
+                        <span class="err_msg" id="spExp_CTC"></span>
+                        </td>
                     </tr>
                     <tr>
-                        <!-- <td></td> -->
+                       
                         <td>
                             <label for="Cur_CTC">Current CTC:</label>
                             <input type="number" name="Cur_CTC" id="Cur_CTC">
+                            <br/>
+                            <span class="err_msg" id="spCur_CTC"></span>
                         </td>
                         
                     </tr>
@@ -925,7 +946,6 @@
 ///Form Validations -- Client Side
       function validateForm() 
       {
-
             let fname = document.getElementById("FirstName");
             let lname = document.getElementById("LastName");
             let dsg = document.getElementById("Designation");
@@ -942,14 +962,12 @@
             let mnth = document.getElementById("mnth");
             let yr = document.getElementById("yr");
 
-            let ref_C = document.getElementById("RefContact_No");
+            // let ref_C = document.getElementById("RefContact_No");
 
-
-
-            let board = document.getElementById("Board");
-            let course = document.getElementById("Course");
-            let Passing_Yr = document.getElementById("Passing_Yr");
-            let Percentage = document.getElementById("Percentage");
+            // let board = document.getElementById("Board");
+            // let course = document.getElementById("Course");
+            // let Passing_Yr = document.getElementById("Passing_Yr");
+            // let Percentage = document.getElementById("Percentage");
 
             // let objarr = [{"col" : ""}]
             
@@ -978,13 +996,12 @@
             let cnt=0
             if (x1 == "") {
                 err1.innerHTML="&nbsp;&nbsp;Name must be filled out !!!  &nbsp;&nbsp;  "
-                cnt++;
-                           
+                cnt++;        
             }
 
             let errdt = document.getElementById("spdt");
-            let errmnth = document.getElementById("spmnth");
-            let erryr = document.getElementById("spyr");
+            // let errmnth = document.getElementById("spmnth");
+            // let erryr = document.getElementById("spyr");
 
             if([x13 || x14 || x15] == "")
             {
@@ -1148,34 +1165,20 @@
                 // var reg_ph = /^\d{10}$/;
                 if(isNaN(x8)||x8.length!=10)
                 {
-                    console.log("Invalid Phone Number")
+                    console.log("Invalid Phone Number");
                     err8.innerHTML = "Enter a valid Phone Number";
                     cnt++;
                 }
                 else
                 {
                     // alert("Not a valid Phone Number");
-                    console.log("Valid Phone Number")
+                    console.log("Valid Phone Number");
 
                     err8.innerHTML="";
                 }
 
 /////REFERENCE CONTACT NO Validation
-
-            // let err_ref_C = document.getElementById("spRefC")
-            //     if(isNaN(ref_C.value)||ref_C.value.length!=10)
-            //     {
-            //         console.log("Invalid Contact Number")
-            //         err_ref_C.innerHTML = "Enter a valid Contact Number";
-            //         cnt++;
-            //     }
-            //     else
-            //     {
-            //         // alert("Not a valid Phone Number");
-            //         console.log("Valid Phone Number")
-
-            //         err_ref_C.innerHTML="";
-            //     }
+            
                 
 
             //     if(isNaN(x11)||x11.length!      rws[i].value = 0;
@@ -1325,12 +1328,295 @@
                 console.log("False: "+cnt)
                 return false
             }else{
-                job_ajax()
+                // job_ajax()
                 return true
             }
             return false
         }       
 
+        function validateEdu()
+        {
+            let cnt=0;
+            let v1 = document.getElementById("Board0");
+            let v2 = document.getElementById("Passing_Yr0");
+            let v3 = document.getElementById("Percentage0");
+
+            let err_board = document.getElementById("spBoard");
+            let err_psyr = document.getElementById("spPassing_Yr");
+            let err_pr = document.getElementById("spPercentage");
+
+            if(v1.value==""){
+                err_board.innerHTML="&nbsp;&nbsp;Board must be selected !!!  &nbsp;&nbsp;  "
+                cnt++
+            }else{
+                err_board.innerHTML=""
+            }
+
+            if(v1.value!=="")
+            {
+                if(v2.value == "") 
+                {
+                     err_psyr.innerHTML="&nbsp;&nbsp;PassingYear must be filled out !!!  &nbsp;&nbsp;  "
+                     cnt++;
+
+                     if(isNaN(v2.value) || v2.value.length!= 4)
+                     {
+                        err_psyr.innerHTML = "&nbsp;&nbsp;Invalid Year !!!  &nbsp;&nbsp;  "
+                        cnt++;
+                     }
+                     else
+                     {
+                        err_psyr.innerHTML="";
+                     }
+
+                     if(isNaN(v3.value) || v3.value>100)
+                     {
+                        err_pr.innerHTML = "&nbsp;&nbsp;Invalid Percentage !!!  &nbsp;&nbsp;  ";
+                        cnt++;
+                     }
+                     else
+                     {
+                        err_pr.innerHTML = "";
+                     }
+                }
+                else
+                {   
+                    err_psyr.innerHTML = "";
+                }
+
+                if(v3.value == "")
+                {
+                    err_pr.innerHTML = "&nbsp;&nbsp;PassingYear must be filled out !!!  &nbsp;&nbsp;  ";
+                    cnt++;
+                }
+                else
+                {
+                    err_pr.innerHTML = "";
+                }
+        }
+        else
+        {
+            err_board.innerHTML = "";
+        }
+
+        if(cnt!=0){
+                console.log("False: "+cnt)
+                return false
+            }else{
+                return true
+            }
+            return false
+
+    }
+
+    function validateLang()
+    {
+        let cnt = 0;
+
+
+        if(cnt!=0){
+                console.log("False: "+cnt)
+                return false
+            }else{
+               
+                return true
+            }
+            return false
+    }
+
+        function validatePref()
+        {
+            let cnt=0;
+
+            let p1 = document.getElementById("Pref_Loc").value;
+            let p2 = document.getElementById("Notice").value;
+            let p3 = document.getElementById("Dept").value;
+            let p4 = document.getElementById("Exp_CTC").value;
+            let p5 = document.getElementById("Cur_CTC").value;
+
+            let err_loc = document.getElementById("spPref_Loc");
+            let err_not = document.getElementById("spNotice");
+            let err_dept = document.getElementById("spDept");
+            let err_expctc = document.getElementById("spExp_CTC");
+            let err_curctc = document.getElementById("spCur_CTC");
+
+            if(p1 != "")
+            {
+                if(p2 == "" || isNan(p2))
+                {
+                    err_not.innerHTML="&nbsp;&nbsp;Enter a valid Notice Period !!!  &nbsp;&nbsp;  ";
+                    cnt++;
+                }
+                else
+                {
+                    err_not.innerHTML ="";
+                }
+
+                if(p3 == "")
+                {
+                    err_dept.innerHTML = "&nbsp;&nbsp;Please select a department !!!  &nbsp;&nbsp;  "
+                    cnt++;
+                }
+                else
+                {
+                    err_dept = "";
+                }
+
+                if(p4 == "" || isNaN(p4))
+                {
+                    err_expctc.innerHTML = "&nbsp;&nbsp;Enter a valid  amount!!!  &nbsp;&nbsp;  ";
+                    cnt++;
+                }
+                else
+                {
+                    err_expctc = "";
+                }
+
+                if(p5 == "" || isNaN(p5))
+                {
+                    err_curctc.innerHTML = "&nbsp;&nbsp;Enter a valid  amount!!!  &nbsp;&nbsp;  ";
+                    cnt++;
+                }
+                else
+                {
+                    err_curctc = "";
+                }
+            }
+            else
+            {
+                err_loc.innerHTML = "";
+            }
+            if(cnt!=0){
+                console.log("False: "+cnt)
+                return false
+            }else{
+                return true
+            }
+            return false
+        }
+        
+        function validateRef()
+        {
+
+            let cnt=0;
+            let ref_C = document.getElementById("RefContact_No0");
+            let ref_Name = document.getElementById("RefName0");
+            let ref_Relation = document.getElementById("RefRelation0");
+
+            let err_ref_C = document.getElementById("spRefC");
+            let err_ref_Name = document.getElementById("spRefName");
+            let err_ref_Relation = document.getElementById("spRefRelation");
+
+
+                    if(isNaN(ref_C.value)||ref_C.value.length!=10)
+                    {
+                        console.log("Invalid Contact Number")
+                        err_ref_C.innerHTML = "Enter a valid Contact Number";
+                        cnt++;
+                    }
+                    else
+                    {
+                        // alert("Not a valid Phone Number");
+                        console.log("Valid Phone Number")
+    
+                        err_ref_C.innerHTML="";
+                    }
+
+                    if(ref_Name.value=="")
+                    {
+                        err_ref_Name.innerHTML = "&nbsp;&nbsp;Reference Name must be filled out !!! &nbsp;&nbsp;";
+                        cnt++;
+                    }
+                    else
+                    {
+                        err_ref_Name.innerHTML = "";
+                    }
+
+                    if(ref_Relation.value=="")
+                    {
+                        err_ref_Relation.innerHTML = "&nbsp;&nbsp;Reference Relation must be filled out !!! &nbsp;&nbsp;";
+                        cnt++;
+                    }
+                    else
+                    {
+                        err_ref_Relation.innerHTML = "";
+                    }
+
+                    if(cnt!=0)
+                    {
+                        console.log("False: "+cnt)
+                        return false
+                    }
+                    else
+                    {
+                        return true
+                    }
+                return false
+            }
+
+            function validateWork()
+            {
+                let cnt=0;
+
+                let w1 = document.getElementById("Company0").value;
+                let w2 = document.getElementById("Dsg0").value;
+                let w3 = document.getElementById("expfrdt0").value;
+                let w4 = document.getElementById("expfrmnth0").value;
+                let w5 = document.getElementById("expfryr0").value;
+                let w6 = document.getElementById("exptodt0").value;
+                let w7 = document.getElementById("exptomnth0").value;
+                let w8 = document.getElementById("exptoyr0").value;
+
+                let err_w1 = document.getElementById("spCompany");
+                let err_w2 = document.getElementById("spDsg");
+                let err_w3 = document.getElementById("spexpfr");
+                let err_w4 = document.getElementById("spexpto");
+
+                if(w1 != "")
+                {
+                    if(w2 == "")
+                    {
+                        err_w2.innerHTML = "&nbsp;&nbsp;Designation must be filled out !!! &nbsp;&nbsp;"
+                        cnt++;
+                    }
+                    else
+                    {
+                        err_w2.innerHTML = "";
+                    }
+                    
+                    if([w3 || w4 || w5] == "")
+                    {
+                        err_w3.innerHTML="&nbsp;&nbsp;Joining date must be filled out !!!  &nbsp;&nbsp;  "
+                        cnt++;
+                        console.log(cnt)
+                    }else{
+                        err_w3.innerHTML="";              
+                    }
+
+                    if([w6 || w7 || w8] == "")
+                    {
+                        err_w4.innerHTML="&nbsp;&nbsp;Leaving date must be filled out !!!  &nbsp;&nbsp;  "
+                        cnt++;
+                        console.log(cnt)
+                    }else{
+                        err_w4.innerHTML="";              
+                    }
+                }
+                else
+                {
+                    err_w1.innerHTML = "";
+                }
+                if(cnt!=0)
+                {
+                    console.log("False: "+cnt)
+                    return false
+                }
+                else
+                {
+                    return true
+                }
+                return false
+            }
     //   form.addEventListener(
     //   "focus",
     //   (event) => {
@@ -1388,7 +1674,7 @@ async function job_ajax()
     var forms = document.getElementById("form");
         
         const obj = new URLSearchParams(new FormData(forms));
-        console.log(obj)
+        console.log("AK job ajax");
 
         let res1 = await fetch("http://localhost:4000/job_app/insert/basic",
         {
@@ -1435,6 +1721,7 @@ async function job_ajax_work()
         const obj = new URLSearchParams(new FormData(forms));
         obj.append('id', id);
         console.log(obj)
+
         let res1 = await fetch("http://localhost:4000/job_app/insert/work",
         {
             headers: {
@@ -1448,6 +1735,7 @@ async function job_ajax_work()
         })
         id=res1.id
 }
+
 async function job_ajax_tech()
 {
     // var forms = document.querySelectorAll("job_app");
@@ -1549,6 +1837,9 @@ async function job_ajax_pref()
                         //     }
                         
                         // }
+
+
+                        ///Assigning the variables for each fieldset
                         let p1 = document.getElementById("Basic_Details");
                         let p2 = document.getElementById("Education_Details");
                         
@@ -1992,120 +2283,179 @@ async function job_ajax_pref()
                         }
                         function onnext()
                         {
-                            pg++;
+                            // pg++;
                             console.log("pg + "+pg);
                             if(pg<=0)
                             {         
                                 pg=0;                                                       
-                            
+                                pg++;
                                 p1.removeAttribute("hidden");
 
                             }
                             if(pg==1){
                                 // console.log(p1)
-                                if(!url1.includes("id"))
+                                var chk = validateForm();
+                                if(chk)
                                 {
-                                    job_ajax()
+                                    if(!url1.includes("id"))
+                                    {
+                                        console.log('Before job ajax');
+                                        job_ajax()
+                                    }
+                                    else
+                                    {
+                                        update_basic()
+                                    }
+                                    
+                                   
+                                    // if(url1.includes("id"))
+                                    // {
+                                    //     basicShow();
+                                    //     // eduShow();
+                                    //     // workShow();
+                                    //     // langShow();
+                                    //     // techShow();
+                                    //     // refShow();
+                                    //     // prefShow();
+                                    // }
+                                    p1.setAttribute("hidden","true")
+                                    p2.removeAttribute("hidden");   
+                                    pg++;
+
                                 }
                                 else
                                 {
-                                    update_basic()
+                                    alert("Please fill all the Basic Details !!!");
+                                    pg = 1;
                                 }
-                                
-                               
-                                // if(url1.includes("id"))
-                                // {
-                                //     basicShow();
-                                //     // eduShow();
-                                //     // workShow();
-                                //     // langShow();
-                                //     // techShow();
-                                //     // refShow();
-                                //     // prefShow();
-                                // }
-                                p1.setAttribute("hidden","true")
-                                p2.removeAttribute("hidden");   
                             }
                             if(pg==2)
                             {   
-                                if(!url1.includes("id"))
+                                var chk = validateEdu();
+                                if(chk)
                                 {
-                                    job_ajax_edu()
+                                pg++;
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_edu()
+                                    }
+                                    else
+                                    {
+                                        update_edu()
+                                    }
+                                    
+                                    p2.setAttribute("hidden","true");
+                                    p3.removeAttribute("hidden");
+                                    // pg++;
+
                                 }
                                 else
                                 {
-                                    update_edu()
+                                    alert("Please fill all the Education Details !!!");
+                                    pg = 2;
                                 }
-                                
-                                p2.setAttribute("hidden","true");
-                                p3.removeAttribute("hidden");
                             }
                             if(pg==3)
                             {
-                                if(!url1.includes("id"))
+                                var chk = validateWork();
+                                if(chk)
                                 {
-                                    job_ajax_work()
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_work()
+                                    }
+                                    else
+                                    {
+                                        update_work()
+                                    }
+                                    p3.setAttribute("hidden", "true");
+                                    p4.removeAttribute("hidden");
+                                    pg++;
                                 }
                                 else
                                 {
-                                    update_work()
+                                    alert("Please fill all the Work Details !!!");
+                                    pg = 3;
                                 }
-                                p3.setAttribute("hidden", "true");
-                                p4.removeAttribute("hidden");
                             }
                             if(pg==4)
                             {
-                                if(!url1.includes("id"))
-                                {
-                                    job_ajax_lang()
-                                }
-                                else{
-                                    update_lang()
-                                }
-                                p4.setAttribute("hidden","true");
-                                p5.removeAttribute("hidden");
+                                    pg++;
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_lang()
+                                    }
+                                    else{
+                                        update_lang()
+                                    }
+                                    p4.setAttribute("hidden","true");
+                                    p5.removeAttribute("hidden");
+                                    // pg++;
                             }
                             if(pg==5)
                             {
-                                if(!url1.includes("id"))
-                                {
-                                    job_ajax_tech()
-                                }
-                                else{
-                                    update_tech()
-                                }
-                                
-                                console.log("working pg 5")
-                                // console.log(p5.id+"hide")
-                                // console.log(p6.id+"show")
-                                p5.setAttribute("hidden","true");
-                                p6.removeAttribute("hidden");
+                                    pg++;
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_tech()
+                                    }
+                                    else
+                                    {
+                                        update_tech()
+                                    }
+                                    
+                                    console.log("working pg 5")
+                                    // console.log(p5.id+"hide")
+                                    // console.log(p6.id+"show")
+                                    p5.setAttribute("hidden","true");
+                                    p6.removeAttribute("hidden");
+                                    // pg++;
                             }
                             if(pg==6)
                             {
-                                if(!url1.includes("id"))
+                                var chk = validateRef();
+                                if(chk)
                                 {
-                                    job_ajax_ref()
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_ref()
+                                    }
+                                    else
+                                    {
+                                        update_ref()
+                                    }
+                                    
+                                    p6.setAttribute("hidden","true");
+                                    p7.removeAttribute("hidden");
+                                    pg++;
                                 }
                                 else
                                 {
-                                    update_ref()
+                                    alert("Please fill all the Reference Details !!!");
+                                    pg = 6;
                                 }
-                                
-                                p6.setAttribute("hidden","true");
-                                p7.removeAttribute("hidden");
                             }
                             if(pg==7)
                             {
-                                if(!url1.includes("id"))
+                                var chk = validatePref();
+                                if(chk)
                                 {
-                                    job_ajax_pref()
+                                    if(!url1.includes("id"))
+                                    {
+                                        job_ajax_pref()
+                                    }
+                                    else
+                                    {
+                                        update_pref()
+                                    }
+                                    p7.removeAttribute("hidden");
+                                    pg++;
                                 }
                                 else
                                 {
-                                    update_pref()
+                                    alert("Please fill all the Preferrence Details !!!");
+                                    pg = 7;
                                 }
-                                p7.removeAttribute("hidden");
                             }
                         }
                     
@@ -2167,7 +2517,6 @@ async function job_ajax_pref()
                             {
                                 pg=0
                             }
-                        }
-                        
+                        }  
     </script>
 </html>

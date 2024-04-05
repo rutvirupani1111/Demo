@@ -201,14 +201,32 @@ export const job_app_update_work = (req, res) => {
     });
   }
 
+
   export const job_app_insert = (req,res)=>
   {
     res.render("p2.ejs");
+    // var sql = `ALTER TABLE Basic_Deets auto_increment = 90;`
+    // result.insertId = 90;
+
+    // conn.query(sql, function(err,result)
+    // {
+    //   if(err)
+    //   {
+    //     console.log(err);
+    //   }
+    //   else
+    //   {
+          
+    //       res.render("p2.ejs");
+    //       console.log("lastinserted" +result.insertId)
+    //   }
+    // })
   }
 
   export const job_app_insert_basic = (req, res) => {
     // res.send("HELLo");
     let data = req.body;
+    // let res.insertId = insid;
     // var sql2 = `INSERT INTO Basic_Deets(FName,LName,Dsg,Add1,Add2,Email_ID,Phone_No,City,State,Gender,Zip_Code,Rel_Status,DOB) VALUES("${data.FirstName}","${data.LastName}","${data.Designation}", "${data.Email_ID}", "${data.Add1}", "${data.Add2}", "${data.City}", "${data.Phone_No}", "${data.State}", "${data.Gender}", "${data.Zip_Code}", "${data.Rel_Status}","${data.yr}-${data.mnth}-${data.dt}");`
     var sql2 = `INSERT INTO Basic_Deets(FName,LName,Dsg,Add1,Add2,Email_ID,Phone_No,City,State,Gender,Zip_Code,Rel_Status,DOB) VALUES("${data.FirstName}","${data.LastName}","${data.Designation}","${data.Add1}","${data.Add2}","${data.Email_ID}","${data.Phone_No}","${data.City}","${data.State}","${data.Gender}","${data.Zip_Code}","${data.Rel_Status}","${data.yr}-${data.mnth}-${data.dt}");`;
     conn.query(sql2, function (err, result) {
@@ -218,8 +236,12 @@ export const job_app_update_work = (req, res) => {
       } 
       else 
       {
-        res.json({ id: result.insertId });
-        console.log("Basic Details Inserted");
+        console.log(result.insertId );
+        // result.insertId = insid;
+        // console.log("Result   = "+JSON.stringify(result));
+        // console.log("result.insertedID = "+ result.insertId);
+        // res.json({ id: result.insertId });
+        // console.log("Basic Details Inserted");
       }
     }); 
   }

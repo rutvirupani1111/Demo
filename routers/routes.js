@@ -20,7 +20,7 @@ export const router = express.Router();
 router.use("/", Registration);
 router.use("/login", Login);
 router.use("/delimeter_search", Delimeter_Search);
-// router.use("/jobapp_ajax", Job_App);
+router.use("/jobapp_ajax", Job_App);
 router.use("/job_app",Job_App2);
 router.use("/result_report", Result);
 router.use("/attendance_report", Attendance);
